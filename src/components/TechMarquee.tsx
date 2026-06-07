@@ -61,40 +61,72 @@ const techStack = [
 ];
 
 export default function TechMarquee() {
-  // Duplicate the array to create a seamless loop
-  const duplicatedTech = [...techStack, ...techStack];
+  // Split the tech stack into two halves
+  const half = Math.ceil(techStack.length / 2);
+  const firstHalf = techStack.slice(0, half);
+  const secondHalf = techStack.slice(half);
+
+  // Duplicate the arrays to create a seamless loop
+  const duplicatedFirst = [...firstHalf, ...firstHalf];
+  const duplicatedSecond = [...secondHalf, ...secondHalf];
 
   return (
     <section className="py-20 border-y border-space-700 bg-space-800/30 backdrop-blur-md relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-space-900 via-transparent to-space-900 z-10 pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 mb-8 relative z-20">
+      <div className="max-w-7xl mx-auto px-6 mb-10 relative z-20">
         <h2 className="text-2xl font-mono text-neon-cyan flex items-center">
           <Cpu className="mr-2" />
           <span className="text-white">System.</span>getArsenal()
         </h2>
       </div>
 
-      <div className="flex overflow-hidden group">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 40,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-          className="flex whitespace-nowrap group-hover:[animation-play-state:paused]"
-        >
-          {duplicatedTech.map((tech, index) => (
-            <div
-              key={index}
-              className="flex items-center space-x-2 bg-space-800 border border-space-700 px-6 py-3 rounded-full mx-4 shadow-lg shadow-black/50 transition-colors hover:border-neon-purple hover:bg-space-700/50 cursor-default"
-            >
-              <span className="text-neon-cyan">{tech.icon}</span>
-              <span className="font-mono text-gray-300 text-sm">{tech.name}</span>
-            </div>
-          ))}
-        </motion.div>
+      <div className="flex flex-col gap-6">
+        {/* Row 1: Moves Left */}
+        <div className="flex overflow-hidden group">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 90, // Slower duration
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            className="flex whitespace-nowrap group-hover:[animation-play-state:paused]"
+          >
+            {duplicatedFirst.map((tech, index) => (
+              <div
+                key={`first-${index}`}
+                className="flex items-center space-x-2 bg-space-800 border border-space-700 px-6 py-3 rounded-full mx-4 shadow-lg shadow-black/50 transition-colors hover:border-neon-purple hover:bg-space-700/50 cursor-default"
+              >
+                <span className="text-neon-cyan">{tech.icon}</span>
+                <span className="font-mono text-gray-300 text-sm">{tech.name}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Row 2: Moves Right */}
+        <div className="flex overflow-hidden group">
+          <motion.div
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{
+              duration: 90, // Slower duration
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            className="flex whitespace-nowrap group-hover:[animation-play-state:paused]"
+          >
+            {duplicatedSecond.map((tech, index) => (
+              <div
+                key={`second-${index}`}
+                className="flex items-center space-x-2 bg-space-800 border border-space-700 px-6 py-3 rounded-full mx-4 shadow-lg shadow-black/50 transition-colors hover:border-neon-purple hover:bg-space-700/50 cursor-default"
+              >
+                <span className="text-neon-purple">{tech.icon}</span>
+                <span className="font-mono text-gray-300 text-sm">{tech.name}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
