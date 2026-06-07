@@ -105,9 +105,10 @@ export default function QuestLog() {
               </div>
 
               {/* Quest Card */}
-              <div 
+              <motion.div 
                 onClick={() => setSelectedQuest(quest)}
-                className="flex-1 glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer hover:-translate-y-5 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-100"
+                whileHover={{ y: -20, boxShadow: "0px 0px 25px rgba(255,255,255,0.3)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                className="flex-1 glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-50" />
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${quest.color}`} />
@@ -130,7 +131,7 @@ export default function QuestLog() {
                   <p className="text-gray-300 text-lg">{quest.summary}</p>
                   <span className="text-neon-purple text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity bg-neon-purple/20 px-2 py-1 rounded">View Data</span>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

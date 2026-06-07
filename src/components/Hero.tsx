@@ -87,9 +87,9 @@ export default function Hero() {
           <div className="flex flex-wrap gap-4 pt-4">
             <motion.a
               href="#bento"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 242, 254, 0.4)" }}
+              whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 0px 25px rgba(0,242,254,0.6)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan px-6 py-3 rounded-md font-mono transition-all"
+              className="flex items-center space-x-2 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan px-6 py-3 rounded-md font-mono transition-colors duration-100"
             >
               <ExternalLink size={18} />
               <span>Launch Demos</span>
@@ -97,9 +97,9 @@ export default function Hero() {
             
             <motion.button
               onClick={() => setShowResumeModal(true)}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139, 92, 246, 0.4)" }}
+              whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 0px 25px rgba(139,92,246,0.6)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 bg-neon-purple/10 border border-neon-purple text-neon-purple px-6 py-3 rounded-md font-mono transition-all"
+              className="flex items-center space-x-2 bg-neon-purple/10 border border-neon-purple text-neon-purple px-6 py-3 rounded-md font-mono transition-colors duration-100"
             >
               <FileText size={18} />
               <span>Decrypt Resume</span>
@@ -109,9 +109,9 @@ export default function Hero() {
               href="https://github.com/TechieSamosa"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+              whileHover={{ scale: 1.05, y: -5, backgroundColor: "rgba(255,255,255,0.2)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 bg-space-800 border border-space-700 text-white px-6 py-3 rounded-md font-mono transition-all"
+              className="flex items-center space-x-2 bg-space-800 border border-space-700 text-white px-6 py-3 rounded-md font-mono transition-colors duration-100"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path></svg>
               <span>Warp to GitHub</span>

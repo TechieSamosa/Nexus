@@ -58,3 +58,19 @@ body {
 .aura-halo:hover {
   box-shadow: 0 0 30px 4px rgba(139, 92, 246, 0.3), inset 0 0 20px 0 rgba(0, 242, 254, 0.15);
 }
+
+@keyframes wave-idle {
+  0%, 100% { transform: translateY(-5px); }
+  50% { transform: translateY(5px); }
+}
+
+.animate-wave {
+  animation: wave-idle 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.group:hover .animate-wave {
+  animation: none;
+  transform: translateY(0);
+}
+

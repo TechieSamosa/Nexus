@@ -209,9 +209,10 @@ export default function BentoGrid() {
                 glarePosition="all"
                 className="w-full h-full"
               >
-                <div 
+                <motion.div 
                   onClick={() => setSelectedProject(project)}
-                  className={`w-full h-full rounded-2xl border border-space-700 bg-gradient-to-br ${project.color} p-6 flex flex-col justify-between cursor-pointer group relative overflow-hidden glass-panel aura-halo transition-all duration-100 hover:-translate-y-5 hover:shadow-[0_0_25px_rgba(0,242,254,0.4)]`}
+                  whileHover={{ y: -20, boxShadow: "0px 0px 25px rgba(0,242,254,0.4)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                  className={`w-full h-full rounded-2xl border border-space-700 bg-gradient-to-br ${project.color} p-6 flex flex-col justify-between cursor-pointer group relative overflow-hidden glass-panel aura-halo`}
                 >
                   {/* Subtle grain texture over card */}
                   <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-30 pointer-events-none"></div>
@@ -239,7 +240,7 @@ export default function BentoGrid() {
                       <span>{project.uiCue}</span>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </Tilt>
             </motion.div>
           ))}
@@ -290,9 +291,15 @@ export default function BentoGrid() {
                     {selectedProject.uiCue}
                   </div>
                   {selectedProject.link && (
-                    <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center font-bold text-black bg-neon-cyan hover:bg-white transition-all duration-100 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(0,242,254,0.8)] px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_10px_rgba(0,242,254,0.2)]">
+                    <motion.a 
+                      href={selectedProject.link} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      whileHover={{ y: -8, boxShadow: "0px 0px 25px rgba(0,242,254,0.8)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                      className="flex items-center font-bold text-black bg-neon-cyan px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_10px_rgba(0,242,254,0.2)]"
+                    >
                       <ExternalLink size={16} className="mr-2" /> Launch
-                    </a>
+                    </motion.a>
                   )}
                 </div>
                 {selectedProject.id === "bdh" && (

@@ -93,19 +93,17 @@ export default function Trophies() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  whileHover={{ y: -20, transition: { duration: 0.1 } }}
+                  whileHover={{ y: -20, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                   className="flex flex-col items-center group"
                 >
                   <div className="mb-6 relative">
                     <div className="absolute inset-0 bg-white/5 blur-xl rounded-full group-hover:bg-white/10 transition-colors"></div>
-                    <motion.div 
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ repeat: Infinity, duration: 3 + index * 0.5, ease: "easeInOut" }}
-                      className={`w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
+                    <div 
+                      className={`animate-wave w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
                     >
                       <div className={`absolute inset-0 bg-gradient-to-b ${item.color}`}></div>
                       <span className="relative z-10 drop-shadow-lg">{item.icon}</span>
-                    </motion.div>
+                    </div>
                   </div>
                   
                   <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-neon-cyan/50 group-hover:shadow-[0_0_25px_rgba(0,242,254,0.4)] transition-all duration-100 shadow-lg">
@@ -131,19 +129,17 @@ export default function Trophies() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  whileHover={{ y: -20, transition: { duration: 0.1 } }}
+                  whileHover={{ y: -20, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                   className="flex flex-col items-center group"
                 >
                   <div className="mb-6 relative">
                     <div className="absolute inset-0 bg-white/5 blur-xl rounded-full group-hover:bg-white/10 transition-colors"></div>
-                    <motion.div 
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ repeat: Infinity, duration: 3 + index * 0.5, ease: "easeInOut" }}
-                      className={`w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
+                    <div 
+                      className={`animate-wave w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
                     >
                       <div className={`absolute inset-0 bg-gradient-to-b ${item.color}`}></div>
                       <span className="relative z-10 drop-shadow-lg">{item.icon}</span>
-                    </motion.div>
+                    </div>
                   </div>
                   
                   <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-yellow-400/50 group-hover:shadow-[0_0_25px_rgba(250,204,21,0.4)] transition-all duration-100 shadow-lg">
