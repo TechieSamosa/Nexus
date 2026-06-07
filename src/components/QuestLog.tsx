@@ -59,7 +59,7 @@ const quests: Quest[] = [
   {
     id: 4,
     title: "AI Engineering Intern",
-    company: "Proton Engineering",
+    company: "Proton Engineering Consultancy & Services",
     date: "Oct 2025 - Dec 2025",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Briefcase className="text-black w-6 h-6" /></div>,
     summary: "Automating Engineering Talent Acquisition",
@@ -74,13 +74,13 @@ const quests: Quest[] = [
   {
     id: 5,
     title: "Data Science and AI/ML Engineering Intern",
-    company: "ISRO",
+    company: "Satish Dhawan Space Centre, Sriharikota Range (SDSC-SHAR), Indian Space Research Organisation (ISRO)",
     date: "Oct 2024 - Nov 2024",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain" /></div>,
     summary: "AI for Launch Vehicle Telemetry",
     achievements: [
       "Analyzed PSLV/SSLV transponder signals to automate signal-degradation quantification for launch safety protocols.",
-      "Developed LSTM-based RNN time-series forecasting models in PyTorch and TensorFlow via Jupyter, serving predictions via FastAPI and AWS S3.",
+      "Developed LSTM-based RNN time-series forecasting models in PyTorch and TensorFlow via Jupyter, serving predictions via FastAPI.",
       "Applied advanced statistical techniques to quantify the exact impact of yaw, pitch, roll angles, Radar Cross Section (RCS), and aspect angle on signal integrity, effectively mitigating real-time atmospheric interference. Reduced manual signal review time by 40%.",
       "Authored 4-5 comprehensive technical reports under the direct mentorship of Mr. Ram Senthil C., Deputy Manager of Mission Computers."
     ],

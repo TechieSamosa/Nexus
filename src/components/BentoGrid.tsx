@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Tilt from "react-parallax-tilt";
-import { Moon, Cpu, Dna, Bot, Satellite, Cross, X, ExternalLink, Database, Network, Target } from "lucide-react";
+import { Moon, Cpu, Dna, Bot, Satellite, Rocket, Cross, X, ExternalLink, Database, Network, Target } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import MermaidDiagram from "./MermaidDiagram";
 
@@ -174,7 +174,7 @@ const projects: Project[] = [
   {
     id: "pslv",
     title: "PSLV Telemetry Analysis",
-    icon: <Network size={32} className="text-orange-400" />,
+    icon: <Rocket size={32} className="text-orange-400" />,
     hook: "AI for Rocket Science: Ensuring the safety of rocket launches by analyzing the strength of communication signals and predicting potential disruptions from the rocket's exhaust flames.",
     stats: "PSLV Telemetry Signal Integrity and Predictive Analysis. Developed AI-driven predictive models to analyse PSLV telemetry data, improving anomaly detection and enhancing flight safety protocols. Applied advanced radar signal processing and SNR-based comparisons.",
     color: "from-orange-900/50 to-space-900",
