@@ -5,6 +5,87 @@ import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import { Moon, Cpu, Dna, Bot, Satellite, Cross, X, ExternalLink, Database, Network, Target } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import MermaidDiagram from "./MermaidDiagram";
+
+const nexusMermaid = `graph TD
+    A[👤 User Inputs JD] -->|Parsed Text| B{💾 LangGraph State Manager}
+    
+    subgraph Multi-Agent Orchestration
+        B -->|Injects Resumes in Chunks of 5| C[🕵️‍♂️ Scout Node]
+        C -->|Outputs Match/Interest JSON| D[🔀 Decision Router]
+        D -->|Filters Only Top 3 Candidates| E[🤝 Negotiator Node]
+        E -->|Reads Hidden Satisfaction Data| F[✉️ Drafts Personalized Outreach]
+    end
+
+    subgraph Data & Inference Layer
+        DB[(Deccan AI Mock DB: 30 Profiles)] -.->|Candidate Feed| B
+        C ===|Batch Inference| LLM((Groq API: Llama-3.3-70b))
+        E ===|Zero-Shot Generation| LLM
+    end
+
+    F -->|Final Payload| G[🖥️ Streamlit Command Center UI]
+    
+    classDef node fill:#1e1b4b,stroke:#00f2fe,stroke-width:2px,color:#fff;
+    classDef state fill:#312e81,stroke:#6366f1,stroke-width:2px,color:#fff;
+    class A,G action;
+    class B state;
+    class C,D,E node;`;
+
+const agrisatMermaid = `graph LR
+    subgraph "1. Cloud Storage (MinIO/S3)"
+        C["raw/ bucket"]
+        D["processed/ bucket"]
+        E["models/ bucket"]
+    end
+
+    subgraph "2. PySpark ETL Pipeline"
+        F["Extract"]
+        G["Transform (NDVI, Features)"]
+        H["Load (Parquet/CSV)"]
+    end
+
+    subgraph "3. scikit-learn ML"
+        I["Ensemble Classifier (Health)"]
+        J["RF Regressor (Yield)"]
+    end
+
+    subgraph "4. Streamlit Dashboard"
+        K["Interactive Map"]
+        L["Model Metrics"]
+    end
+
+    C --> F --> G --> H --> D
+    D --> I & J --> E
+    D & E --> K & L`;
+
+const bdhMermaid = `graph TD
+    Input[Token Input: idx] --> Embed[Token Embedding E]
+    Embed --> LN1[Layer Norm]
+    
+    subgraph BDH_Layer ["BDH Layer (Repeated L = 6 times)"]
+        LN1 --> EncPrimal[Primal Encoder W_enc]
+        EncPrimal --> ReLUPrimal["Primal Activation: ReLU(·)"]
+        
+        ReLUPrimal --> Attn["Causal Softmax Attention <br> Q = K = xs, V = x"]
+        LN1 --> Attn
+        
+        Attn --> LN2[Layer Norm]
+        LN2 --> EncDual[Dual Encoder W_enc_v]
+        EncDual --> ReLUDual["Dual Activation: ReLU(·)"]
+        
+        ReLUPrimal -- xs --> Gate{{"Multiplicative Gate (xs ⊙ ys)"}}
+        ReLUDual -- ys --> Gate
+        
+        Gate --> Drop[Dropout p=0.1]
+        Drop --> Dec[Decoder W_dec]
+        Dec --> LN3[Layer Norm]
+        
+        LN1 -- Residual Skip --x LN4[Layer Norm]
+        LN3 --> LN4
+    end
+    
+    LN4 --> LMHead[LM Head: Linear]
+    LMHead --> Logits[Output Logits]`;
 
 interface Project {
   id: string;
@@ -201,6 +282,10 @@ export default function BentoGrid() {
                 {selectedProject.id === "bdh" && (
                   <div className="space-y-6 mt-6">
                     <div className="p-4 bg-space-900 rounded-lg border border-space-700">
+                      <h4 className="font-mono text-white mb-4 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2"></span> BDH Architecture Forward Pass</h4>
+                      <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 mb-6">
+                        <MermaidDiagram chart={bdhMermaid} />
+                      </div>
                       <h4 className="font-mono text-white mb-4 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2"></span> Training Loss Trajectories</h4>
                       <div className="h-64 w-full">
                         <ResponsiveContainer width="100%" height="100%">
@@ -224,112 +309,36 @@ export default function BentoGrid() {
                 {selectedProject.id === "nexus" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
                     <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-purple mr-2 animate-pulse"></span> Multi-Agent Orchestration Architecture</h4>
-                    <div className="flex flex-col items-center space-y-4">
-                      <div className="bg-space-800 border border-neon-cyan/50 text-neon-cyan px-6 py-2 rounded-lg font-mono text-sm">Supervisor Agent (LangGraph)</div>
-                      <div className="h-6 border-l-2 border-dashed border-space-600"></div>
-                      <div className="flex space-x-4 w-full justify-center">
-                        <div className="h-10 border-t-2 border-dashed border-space-600 w-1/2 mt-3 absolute"></div>
-                        <div className="bg-space-800 border border-space-600 px-4 py-2 rounded-lg text-center z-10 w-1/3">
-                          <span className="text-xs text-gray-400 block mb-1">Node 1</span>
-                          <span className="text-sm font-bold text-white">Technical Reviewer</span>
-                        </div>
-                        <div className="bg-space-800 border border-space-600 px-4 py-2 rounded-lg text-center z-10 w-1/3">
-                          <span className="text-xs text-gray-400 block mb-1">Node 2</span>
-                          <span className="text-sm font-bold text-white">Culture Fit Analyst</span>
-                        </div>
-                        <div className="bg-space-800 border border-space-600 px-4 py-2 rounded-lg text-center z-10 w-1/3">
-                          <span className="text-xs text-gray-400 block mb-1">Node 3</span>
-                          <span className="text-sm font-bold text-white">Coding Assessor</span>
-                        </div>
-                      </div>
-                      <div className="h-6 border-l-2 border-dashed border-space-600"></div>
-                      <div className="bg-neon-purple/20 border border-neon-purple text-white px-6 py-2 rounded-lg font-mono text-sm flex items-center">
-                        <span className="mr-2">Aggregator / Scorer Node</span>
-                      </div>
+                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600">
+                      <MermaidDiagram chart={nexusMermaid} />
                     </div>
                   </div>
                 )}
 
                 {selectedProject.id === "aether" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
-                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span> High-Level Design (HLD) Pipeline</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-space-800 border border-space-600 p-4 rounded-lg flex flex-col items-center text-center">
-                        <Database size={24} className="text-gray-400 mb-2" />
-                        <span className="text-sm font-bold text-white">Multi-modal Input</span>
-                        <span className="text-xs text-gray-500 mt-1">OHRC, DFSAR, IIRS (GeoTIFF)</span>
-                      </div>
-                      <div className="flex flex-col items-center justify-center hidden md:flex text-space-600">
-                        <span className="text-2xl">→</span>
-                      </div>
-                      <div className="bg-space-800 border border-neon-cyan/50 p-4 rounded-lg flex flex-col items-center text-center shadow-[0_0_15px_rgba(0,242,254,0.1)]">
-                        <Network size={24} className="text-neon-cyan mb-2" />
-                        <span className="text-sm font-bold text-white">U-Net Generator (MAE)</span>
-                        <span className="text-xs text-gray-500 mt-1">Self-Supervised Fine-Tuning</span>
-                      </div>
-                      <div className="flex flex-col items-center justify-center hidden md:flex text-space-600">
-                        <span className="text-2xl">→</span>
-                      </div>
-                      <div className="bg-space-800 border border-neon-purple/50 p-4 rounded-lg flex flex-col items-center text-center shadow-[0_0_15px_rgba(139,92,246,0.1)]">
-                        <Target size={24} className="text-neon-purple mb-2" />
-                        <span className="text-sm font-bold text-white">Enhanced Output</span>
-                        <span className="text-xs text-gray-500 mt-1">+86 dB SNR PSR Imagery</span>
-                      </div>
+                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span> Zero-Reference Enhancement</h4>
+                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 flex justify-center">
+                      <img src="https://raw.githubusercontent.com/TechieSamosa/AETHER/main/docs/images/before_after_sample.png" alt="AETHER Enhancement Results" className="w-full rounded-lg" />
                     </div>
-                    <div className="mt-4 text-xs font-mono text-gray-500 text-center">Reference: AETHER/Journal and Reports/REPORT.pdf</div>
+                    <div className="mt-4 text-xs font-mono text-gray-400 text-center">Left: Raw OHRC telemetry of a PSR. Right: AETHER-enhanced output revealing hidden craters.</div>
                   </div>
                 )}
 
                 {selectedProject.id === "agrisat" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
                     <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span> Distributed Spark ETL Architecture</h4>
-                    <div className="flex flex-col space-y-4 font-mono text-sm">
-                      <div className="flex justify-between items-center bg-space-800 p-4 border border-space-600 rounded-lg">
-                        <div className="flex items-center text-gray-300"><Database size={16} className="mr-2 text-gray-400" /> MinIO / S3</div>
-                        <span className="text-xs text-gray-500">Multi-spectral GeoTIFFs</span>
-                      </div>
-                      <div className="flex justify-center text-space-600">↓</div>
-                      <div className="bg-space-800 p-4 border border-neon-cyan/50 rounded-lg text-center">
-                        <div className="text-neon-cyan font-bold mb-2 flex justify-center items-center"><Network size={16} className="mr-2" /> Apache Spark Cluster</div>
-                        <div className="grid grid-cols-3 gap-2 text-xs">
-                          <div className="bg-space-900 border border-space-700 p-2 rounded">Worker 1 (ETL)</div>
-                          <div className="bg-space-900 border border-space-700 p-2 rounded">Worker 2 (ETL)</div>
-                          <div className="bg-space-900 border border-space-700 p-2 rounded">Worker 3 (ETL)</div>
-                        </div>
-                      </div>
-                      <div className="flex justify-center text-space-600">↓</div>
-                      <div className="bg-space-800 p-4 border border-neon-purple/50 rounded-lg text-center">
-                        <div className="text-neon-purple font-bold mb-2">Ensemble Soft-Voting</div>
-                        <div className="flex justify-center space-x-4 text-xs text-gray-400">
-                          <span>Random Forest</span>
-                          <span>|</span>
-                          <span>GBM</span>
-                          <span>|</span>
-                          <span>SVM</span>
-                        </div>
-                      </div>
+                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600">
+                      <MermaidDiagram chart={agrisatMermaid} />
                     </div>
                   </div>
                 )}
 
                 {selectedProject.id === "synapse" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
-                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span> Synapse.cpp Execution Graph</h4>
-                    <div className="flex items-center justify-center space-x-2 md:space-x-4 font-mono text-xs md:text-sm">
-                      <div className="bg-space-800 border border-space-600 p-3 rounded-lg text-center w-24 md:w-32">
-                        <span className="block text-gray-300">Input</span>
-                        <span className="text-gray-500 text-xs">Features</span>
-                      </div>
-                      <div className="text-space-600">→</div>
-                      <div className="bg-space-800 border border-neon-cyan/50 p-3 rounded-lg text-center w-24 md:w-32 shadow-[0_0_10px_rgba(0,242,254,0.1)]">
-                        <span className="block text-neon-cyan">Hidden Layers</span>
-                        <span className="text-gray-500 text-xs">He Init + ReLU</span>
-                      </div>
-                      <div className="text-space-600">→</div>
-                      <div className="bg-space-800 border border-neon-purple/50 p-3 rounded-lg text-center w-24 md:w-32 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
-                        <span className="block text-neon-purple">Optimizer</span>
-                        <span className="text-gray-500 text-xs">Adam / SGD</span>
-                      </div>
+                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span> Synapse.cpp MLP Architecture</h4>
+                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 flex justify-center">
+                      <img src="https://raw.githubusercontent.com/TechieSamosa/Synapse.cpp/main/assets/mlp_architecture.png" alt="MLP Architecture Diagram" className="max-w-full rounded-lg bg-white/5" />
                     </div>
                     <div className="mt-6 p-3 bg-black/50 rounded border border-space-700 font-mono text-xs text-green-400">
                       $ make build<br/>
