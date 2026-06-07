@@ -53,7 +53,7 @@ const certifications = [
   {
     title: "Supervised Machine Learning",
     subtitle: "Stanford University",
-    icon: <img src="/logos/Stanford.png" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/stanford University.png" className="w-full h-full object-contain p-2" />,
     color: "from-red-400/20 to-transparent",
     border: "border-red-400",
   },
@@ -108,7 +108,7 @@ const volunteering = [
   {
     title: "Technical Team Lead",
     subtitle: "Data Science Club, VIT Bhopal",
-    icon: <img src="/logos/images.jpg" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/Data Science Clug.png" className="w-full h-full object-contain p-2" />,
     color: "from-cyan-400/20 to-transparent",
     border: "border-cyan-400",
   },

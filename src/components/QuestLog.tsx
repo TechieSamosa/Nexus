@@ -22,7 +22,7 @@ const quests: Quest[] = [
     title: "Frontier AI Alignment & Multi-Agent Auditing",
     company: "Deccan AI Experts",
     date: "Jan 2025 - Present",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/deccan-ai-logo.png" alt="Deccan AI" className="w-full h-full object-contain p-1" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Deccan AI.jpg" alt="Deccan AI" className="w-full h-full object-contain p-1" /></div>,
     summary: "Frontier AI Alignment & Multi-Agent Auditing",
     achievements: [
       "Accumulated 500+ hours across frontier LLM projects (MAITRIX, Shield, Bluebird, Action Extensions).",
