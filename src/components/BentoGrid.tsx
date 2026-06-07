@@ -211,7 +211,7 @@ export default function BentoGrid() {
               >
                 <div 
                   onClick={() => setSelectedProject(project)}
-                  className={`w-full h-full rounded-2xl border border-space-700 bg-gradient-to-br ${project.color} p-6 flex flex-col justify-between cursor-pointer group relative overflow-hidden glass-panel aura-halo transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,242,254,0.15)]`}
+                  className={`w-full h-full rounded-2xl border border-space-700 bg-gradient-to-br ${project.color} p-6 flex flex-col justify-between cursor-pointer group relative overflow-hidden glass-panel aura-halo transition-all duration-100 hover:-translate-y-5 hover:shadow-[0_0_25px_rgba(0,242,254,0.4)]`}
                 >
                   {/* Subtle grain texture over card */}
                   <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-30 pointer-events-none"></div>
@@ -290,7 +290,7 @@ export default function BentoGrid() {
                     {selectedProject.uiCue}
                   </div>
                   {selectedProject.link && (
-                    <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center font-bold text-black bg-neon-cyan hover:bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(0,242,254,0.6)] px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_10px_rgba(0,242,254,0.2)]">
+                    <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center font-bold text-black bg-neon-cyan hover:bg-white transition-all duration-100 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(0,242,254,0.8)] px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_10px_rgba(0,242,254,0.2)]">
                       <ExternalLink size={16} className="mr-2" /> Launch
                     </a>
                   )}
