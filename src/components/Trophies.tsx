@@ -72,8 +72,8 @@ export default function Trophies() {
                 
                 {/* Plaque */}
                 <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-space-500 transition-colors shadow-lg">
-                  <h3 className="font-bold text-white text-sm mb-1 h-10 flex items-center justify-center">{item.title}</h3>
-                  <p className="text-xs font-mono text-gray-400">{item.subtitle}</p>
+                  <h3 className="font-bold text-white text-lg mb-2 h-14 flex items-center justify-center">{item.title}</h3>
+                  <p className="text-sm font-mono text-gray-400">{item.subtitle}</p>
                 </div>
               </motion.div>
             ))}

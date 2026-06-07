@@ -21,7 +21,7 @@ const quests: Quest[] = [
     title: "AI Training Specialist & Python Expert",
     company: "Deccan AI Experts (Freelance)",
     date: "Jan 2025 - Present",
-    icon: <Briefcase size={24} />,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://ui-avatars.com/api/?name=Deccan+AI&background=0D8ABC&color=fff&rounded=true" alt="Deccan AI" className="w-full h-full object-contain rounded-full" /></div>,
     summary: "Frontier LLM Pipeline Evaluation & Multi-Agent Auditing",
     achievements: [
       "Evaluated production-grade LLM pipelines and multi-agent workflows across frontier AI projects in an Agile / sprint-based environment.",
@@ -35,7 +35,7 @@ const quests: Quest[] = [
     title: "AI/ML Research Intern",
     company: "ISRO (Satish Dhawan Space Centre)",
     date: "Oct 2024 - Nov 2024",
-    icon: <Rocket size={24} />,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain" /></div>,
     summary: "Telemetry Forecasting & Radar Signal-Strength Prediction",
     achievements: [
       "Integrated multi-source telemetry streams (RCS, yaw, pitch, roll); built an AI radar signal-strength prediction system for PSLV/SSLV; applied feature engineering on telemetry parameters for real-time atmospheric-interference detection.",
@@ -49,7 +49,7 @@ const quests: Quest[] = [
     title: "Intel AI 4 Youth Trainee",
     company: "Intel Corporation",
     date: "Mar 2021 - Oct 2021",
-    icon: <Building size={24} />,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" alt="Intel" className="w-full h-full object-contain" /></div>,
     summary: "Transformer-based NLP Healthcare Chatbot Prototyping",
     achievements: [
       "Prototyped Doctor Bot, a transformer-based NLP healthcare chatbot (pre-ChatGPT era).",

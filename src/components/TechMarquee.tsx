@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { Database, Code2, Cpu, Brain, Network, Terminal, Sparkles, Server } from "lucide-react";
 
 const techStack = [
+  { name: "DSA", icon: <Code2 size={20} /> },
+  { name: "LLD & HLD", icon: <Network size={20} /> },
+  { name: "OS & DBMS", icon: <Database size={20} /> },
   { name: "Python", icon: <Code2 size={20} /> },
   { name: "C++17", icon: <Terminal size={20} /> },
   { name: "SQL", icon: <Database size={20} /> },

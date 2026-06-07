@@ -25,11 +25,22 @@ export default function Footer() {
 
     if (cmd === "help") {
       newOutput.push("AVAILABLE COMMANDS:");
+      newOutput.push("  whoami          Display identity and hobbies");
+      newOutput.push("  hobbies         Display personal interests");
       newOutput.push("  heavy-lift      Show previous gym stats");
       newOutput.push("  deadlift_pr     Show current deadlift PR");
       newOutput.push("  moka-pot        Show previous coffee notes");
       newOutput.push("  moka_pot_notes  Show coffee bean estate preferences");
       newOutput.push("  clear           Clear terminal");
+    } else if (cmd === "whoami" || cmd === "hobbies") {
+      newOutput.push("SYSTEM LOG: Identity Verified.");
+      newOutput.push("HOBBIES & INTERESTS:");
+      newOutput.push("- Swimming (South Zone Swimmer) & Gymming");
+      newOutput.push("- Archery (State Level Archer)");
+      newOutput.push("- Postcrossing & Philately");
+      newOutput.push("- Horology & Numismatics (Collecting automatic watches and old global coins)");
+      newOutput.push("- Gaming (RDR 2 & others)");
+      newOutput.push("- Actively learning Golf and Tennis");
     } else if (cmd === "heavy-lift") {
       newOutput.push("SYSTEM LOG: Last recorded 1RM - 180kg. Status: In Training.");
     } else if (cmd === "deadlift_pr") {
@@ -42,6 +53,8 @@ export default function Footer() {
       setOutput([]);
       setInput("");
       return;
+    } else {
+      newOutput.push(`Command not found: ${cmd}. Type 'help' for available commands.`);
     }
     setInput("");
   };
@@ -88,15 +101,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* The Easter Egg Mechanism */}
       <div className="absolute bottom-4 right-6 z-50">
         <motion.button
           whileHover={{ rotate: 15, scale: 1.1 }}
           onClick={() => setShowTerminal(!showTerminal)}
-          className="text-space-600 hover:text-neon-purple transition-colors p-2"
+          className="text-space-600 hover:text-neon-purple transition-colors p-4 bg-space-800/80 rounded-full border border-space-700 shadow-lg"
           title="Inspect the Pilot Metropolitan"
         >
-          <PenTool size={20} />
+          <PenTool size={36} />
         </motion.button>
       </div>
 
@@ -117,7 +129,7 @@ export default function Footer() {
               <button onClick={() => setShowTerminal(false)} className="text-gray-500 hover:text-white">✕</button>
             </div>
             
-            <div className="p-4 h-64 overflow-y-auto font-mono text-xs text-green-400 flex flex-col custom-scrollbar" onClick={() => inputRef.current?.focus()}>
+            <div className="p-4 h-80 overflow-y-auto font-mono text-sm md:text-base text-green-400 flex flex-col custom-scrollbar" onClick={() => inputRef.current?.focus()}>
               <div className="mb-2 text-gray-400">
                 Nexus Terminal v2.0<br/>
                 Type 'help' to see available commands.

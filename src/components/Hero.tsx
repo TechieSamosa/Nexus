@@ -5,10 +5,11 @@ import { Terminal, FileText, ExternalLink, Coffee } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const titles = [
-  "AI & ML Engineer",
-  "Deep Learning Researcher",
-  "Agentic AI Orchestrator",
-  "C++ Systems Programmer",
+  "Data Scientist",
+  "ML Engineer",
+  "Full Stack AI Engineer",
+  "Data Engineer",
+  "Researcher",
 ];
 
 export default function Hero() {
