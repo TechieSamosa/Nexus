@@ -7,7 +7,7 @@ import { GraduationCap, Award, BookOpen, Star, Trophy, HeartHandshake, Languages
 const academics = [
   {
     title: "Vellore Institute of Technology",
-    subtitle: "Integrated M.Tech, Computational & Data Science (2022-2027)",
+    subtitle: "Integrated M.Tech (ME) in computer science engineering specialised in Computational & Data Science (2022-2027)",
     icon: <GraduationCap size={40} className="text-neon-cyan" />,
     color: "from-neon-cyan/20 to-transparent",
     border: "border-neon-cyan",
@@ -56,6 +56,37 @@ const certifications = [
     icon: <Trophy size={40} className="text-red-400" />,
     color: "from-red-400/20 to-transparent",
     border: "border-red-400",
+  },
+];
+
+const extracurriculars = [
+  {
+    title: "All-India Champions",
+    subtitle: "National Aerolympics 2020 (Organized by HAL & AeSI)",
+    icon: <Trophy size={40} className="text-yellow-400" />,
+    color: "from-yellow-400/20 to-transparent",
+    border: "border-yellow-400",
+  },
+  {
+    title: "National Cadet Corps (NCC)",
+    subtitle: "Cadet (AP/JD2016417009)",
+    icon: <Award size={40} className="text-green-500" />,
+    color: "from-green-500/20 to-transparent",
+    border: "border-green-500",
+  },
+  {
+    title: "DBHPS Rashtra Bhasha Praveena",
+    subtitle: "Equivalent to B.A. in Hindi Literature",
+    icon: <Star size={40} className="text-indigo-400" />,
+    color: "from-indigo-400/20 to-transparent",
+    border: "border-indigo-400",
+  },
+  {
+    title: "State Level Swimmer & Archery",
+    subtitle: "School Games Federation Andhra Pradesh",
+    icon: <Award size={40} className="text-cyan-400" />,
+    color: "from-cyan-400/20 to-transparent",
+    border: "border-cyan-400",
   },
 ];
 
@@ -155,8 +186,9 @@ export default function Trophies() {
 
         <GridSection title="Academics" items={academics} indexOffset="01" />
         <GridSection title="Certifications" items={certifications} indexOffset="02" />
-        <GridSection title="Volunteering" items={volunteering} indexOffset="03" />
-        <GridSection title="Languages" items={languages} indexOffset="04" />
+        <GridSection title="Extracurriculars & Awards" items={extracurriculars} indexOffset="03" />
+        <GridSection title="Volunteering" items={volunteering} indexOffset="04" />
+        <GridSection title="Languages" items={languages} indexOffset="05" />
       </div>
     </section>
   );

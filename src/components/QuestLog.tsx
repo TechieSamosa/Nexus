@@ -25,61 +25,66 @@ const quests: Quest[] = [
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="/deccan-ai-logo.png" alt="Deccan AI" className="w-full h-full object-contain rounded-full" /></div>,
     summary: "Frontier AI Alignment & Multi-Agent Auditing",
     achievements: [
-      "SQL Testing on Project Maitrix.",
-      "Evaluated LLMs using RLHF (verbosity, factual accuracy).",
-      "Boosted Gemini instruction-following by 15%."
+      "Accumulated 500+ hours across frontier LLM projects (MAITRIX, Shield, Bluebird, Action Extensions).",
+      "On Project MAITRIX, led tool-correctness validation on agentic RL environments by auditing Python implementations against live SQLite seed databases across an 18-tool setup, surfacing logical errors and SQL mismatches.",
+      "Engineered structured RLHF evaluation rubrics for structured side-by-side LLM response comparisons (assessing reasoning coherence and factual grounding), improving instruction-following accuracy by 15%.",
+      "Performed rigorous EDA and data-quality analysis using Pandas/NumPy to enforce data governance."
     ],
     color: "from-neon-cyan to-blue-600",
   },
   {
     id: 2,
+    title: "Data Scientist & AI QA Specialist",
+    company: "Mindrift",
+    date: "2024 - Present",
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Building className="text-black w-6 h-6" /></div>,
+    summary: "Data Scientist & AI Quality Assurance",
+    achievements: [
+      "Working as a Data Scientist and AI Quality Assurance specialist. Creating and managing high-tier Human Intelligence Data (HID) to train frontier AI models. Acting as the critical human-in-the-loop for AI alignment, reasoning validation, and rigorous quality assurance."
+    ],
+    color: "from-blue-400 to-indigo-600",
+  },
+  {
+    id: 3,
     title: "AI and Math Specialist",
     company: "Outlier",
     date: "Jan 2025 - Present",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Building className="text-black w-6 h-6" /></div>,
     summary: "AI and Math Specialist",
     achievements: [
-      "Training AI on Natural Language Processing and Mathematical reasoning."
+      "Operating as an AI and Math Specialist. Evaluated and trained advanced AI models on complex mathematical reasoning and problem-solving tasks, providing structured human feedback for iterative model improvement."
     ],
     color: "from-green-500 to-emerald-700",
   },
   {
-    id: 3,
+    id: 4,
     title: "AI Engineering Intern",
     company: "Proton Engineering",
     date: "Oct 2025 - Dec 2025",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Briefcase className="text-black w-6 h-6" /></div>,
     summary: "Automating Engineering Talent Acquisition",
     achievements: [
-      "Built a Streamlit/SpaCy resume parsing web app.",
-      "Achieved >90% candidate categorization accuracy, cutting HR screening time by 80%."
+      "Architected and deployed an AI-driven resume parsing web application utilizing Python, Streamlit, and Plotly.",
+      "Leveraged SpaCy NLP pipelines and pdfplumber to automate candidate screening and complex data extraction.",
+      "Developed custom scoring and skill-clustering algorithms tailored to specialized EPC industry roles, achieving >90% accuracy in candidate categorization.",
+      "Drove significant operational impact by slashing HR manual screening time by 80% (processing 50 resumes in 42 seconds instead of 120 minutes)."
     ],
     color: "from-yellow-400 to-orange-500",
   },
   {
-    id: 4,
+    id: 5,
     title: "Data Science and AI/ML Engineering Intern",
     company: "ISRO",
     date: "Oct 2024 - Nov 2024",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain" /></div>,
     summary: "AI for Launch Vehicle Telemetry",
     achievements: [
-      "Analyzed PSLV transponder signals.",
-      "Developed predictive models quantifying the impact of yaw, pitch, and roll on signal integrity under Mr. Ram Senthil C.."
+      "Analyzed PSLV/SSLV transponder signals to automate signal-degradation quantification for launch safety protocols.",
+      "Developed LSTM-based RNN time-series forecasting models in PyTorch and TensorFlow via Jupyter, serving predictions via FastAPI and AWS S3.",
+      "Applied advanced statistical techniques to quantify the exact impact of yaw, pitch, roll angles, Radar Cross Section (RCS), and aspect angle on signal integrity, effectively mitigating real-time atmospheric interference. Reduced manual signal review time by 40%.",
+      "Authored 4-5 comprehensive technical reports under the direct mentorship of Mr. Ram Senthil C., Deputy Manager of Mission Computers."
     ],
     color: "from-orange-500 to-red-600",
-  },
-  {
-    id: 5,
-    title: "Technical Team Lead",
-    company: "Data Science Club, VIT Bhopal",
-    date: "May 2023 - May 2024",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Target className="text-black w-6 h-6" /></div>,
-    summary: "Technical Team Lead",
-    achievements: [
-      "Mentored peers, led machine learning workshops, and drove open-source projects."
-    ],
-    color: "from-blue-400 to-indigo-600",
   },
   {
     id: 6,
@@ -89,9 +94,10 @@ const quests: Quest[] = [
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="/intel-logo.png" alt="Intel" className="w-full h-full object-contain" /></div>,
     summary: "Healthcare AI for Social Impact",
     achievements: [
-      "Prototyped NLP 'Doctor Bot'.",
-      "Top 125 finalist of 52,000.",
-      "Endorsed by NITI Aayog."
+      "Selected among the top 125 finalists out of 52,000 participants in a prestigious All India AI problem-solving competition backed by Intel, MeitY, NITI Aayog, and NeGD.",
+      "Completed intensive training in Machine Learning and Neural Networks.",
+      "Prototyped 'Doctor Bot', a transformer-based NLP virtual healthcare assistant (pre-ChatGPT era).",
+      "'Doctor Bot' was officially endorsed by NITI Aayog for public deployment in Uttar Pradesh, recognizing its potential to drastically improve healthcare accessibility."
     ],
     color: "from-neon-purple to-purple-800",
   }

@@ -96,7 +96,8 @@ interface Project {
   color: string;
   uiCue: string;
   span: string;
-  link?: string;
+  githubUrl?: string;
+  liveUrl?: string;
 }
 
 const bdhLineData = [
@@ -122,7 +123,7 @@ const projects: Project[] = [
     color: "from-gray-700 to-gray-900",
     uiCue: "Lunar PSR Imaging Pipeline",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1",
-    link: "https://github.com/TechieSamosa/AETHER"
+    githubUrl: "https://github.com/TechieSamosa/AETHER"
   },
   {
     id: "synapse",
@@ -133,7 +134,7 @@ const projects: Project[] = [
     color: "from-blue-900 to-space-900",
     uiCue: "Terminal Compiling...",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
-    link: "https://github.com/TechieSamosa/Synapse.cpp"
+    githubUrl: "https://github.com/TechieSamosa/Synapse.cpp"
   },
   {
     id: "bdh",
@@ -144,7 +145,7 @@ const projects: Project[] = [
     color: "from-purple-900 to-space-900",
     uiCue: "Neuron Firing Node",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
-    link: "https://github.com/TechieSamosa/BDH-Ablations"
+    githubUrl: "https://github.com/TechieSamosa/BDH-Ablations"
   },
   {
     id: "nexus",
@@ -155,7 +156,8 @@ const projects: Project[] = [
     color: "from-green-900/50 to-space-900",
     uiCue: "Agent Graph Visualizer",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1",
-    link: "https://nexus-scout-catalyst.streamlit.app/"
+    githubUrl: "https://github.com/TechieSamosa/NexusScout",
+    liveUrl: "https://nexus-scout-catalyst.streamlit.app/"
   },
   {
     id: "agrisat",
@@ -166,7 +168,8 @@ const projects: Project[] = [
     color: "from-yellow-900/50 to-space-900",
     uiCue: "Multispectral Layer Switcher",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
-    link: "https://agrisatai.streamlit.app/"
+    githubUrl: "https://github.com/TechieSamosa/AgriSatAI",
+    liveUrl: "https://agrisatai.streamlit.app/"
   },
   {
     id: "pslv",
@@ -232,9 +235,9 @@ export default function BentoGrid() {
                     <div className="p-3 bg-space-900/50 rounded-lg backdrop-blur-sm border border-white/5">
                       {project.icon}
                     </div>
-                    {project.link ? (
-                      <a href={project.link} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-xs font-mono bg-neon-purple/20 text-neon-purple hover:bg-neon-purple/40 hover:text-white px-3 py-1.5 rounded transition-colors flex items-center border border-neon-purple/30 z-20">
-                        <ExternalLink size={12} className="mr-1" /> {project.link.includes('streamlit') ? 'Live Demo' : 'GitHub'}
+                    {(project.liveUrl || project.githubUrl) ? (
+                      <a href={project.liveUrl || project.githubUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-xs font-mono bg-neon-purple/20 text-neon-purple hover:bg-neon-purple/40 hover:text-white px-3 py-1.5 rounded transition-colors flex items-center border border-neon-purple/30 z-20">
+                        <ExternalLink size={12} className="mr-1" /> {project.liveUrl ? 'Live Demo' : 'GitHub'}
                       </a>
                     ) : (
                       <span className="text-xs font-mono bg-space-900/80 px-2 py-1 rounded text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -301,17 +304,31 @@ export default function BentoGrid() {
                     <span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span>
                     {selectedProject.uiCue}
                   </div>
-                  {selectedProject.link && (
-                    <motion.a 
-                      href={selectedProject.link} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      whileHover={{ y: -8, boxShadow: "0px 0px 25px rgba(0,242,254,0.8)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
-                      className="flex items-center font-bold text-black bg-neon-cyan px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_10px_rgba(0,242,254,0.2)]"
-                    >
-                      <ExternalLink size={16} className="mr-2" /> Launch
-                    </motion.a>
-                  )}
+                  <div className="flex space-x-4">
+                    {selectedProject.githubUrl && (
+                      <motion.a 
+                        href={selectedProject.githubUrl} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        whileHover={{ y: -8, boxShadow: "0px 0px 25px rgba(255,255,255,0.4)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                        className="flex items-center font-bold text-white bg-space-800 px-6 py-2 rounded-lg border border-space-600 shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path></svg>
+                        Source Code
+                      </motion.a>
+                    )}
+                    {selectedProject.liveUrl && (
+                      <motion.a 
+                        href={selectedProject.liveUrl} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        whileHover={{ y: -8, boxShadow: "0px 0px 25px rgba(0,242,254,0.8)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                        className="flex items-center font-bold text-black bg-neon-cyan px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_10px_rgba(0,242,254,0.2)]"
+                      >
+                        <ExternalLink size={16} className="mr-2" /> Live Demo
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
                 {selectedProject.id === "bdh" && (
                   <div className="space-y-6 mt-6">

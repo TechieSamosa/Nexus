@@ -5,9 +5,14 @@ import { Terminal, FileText, ExternalLink, Coffee, Download, X } from "lucide-re
 import { useEffect, useState } from "react";
 
 const titles = [
+  "Aditya Khamitkar",
   "Data Scientist",
   "AI/ML Engineer",
-  "Generative AI & Agentic Orchestration",
+  "Generative AI",
+  "Data Engineer",
+  "ML Engineer",
+  "Full Stack AI Engineer",
+  "Researcher"
 ];
 
 export default function Hero() {
