@@ -169,15 +169,25 @@ const projects: Project[] = [
     link: "https://agrisatai.streamlit.app/"
   },
   {
-    id: "doctor",
-    title: "Dr DiagnoSense",
-    icon: <Cross size={32} className="text-red-400" />,
-    hook: "A Personal AI Health Assistant: A medical AI tool designed to provide accessible health insights by analyzing symptoms and offering potential causes, bringing early diagnostic support to your fingertips.",
-    stats: "Dr DiagnoSense: Intelligent Symptom & Condition Assistant. Transformer-based NLP healthcare assistant endorsed by NITI Aayog. ML-based detection of Alzheimer's, brain tumors, breast cancer, and heart attack risks using cognitive assessment and imaging data (Pickle-based models, Streamlit web interface).",
-    color: "from-red-900/50 to-space-900",
-    uiCue: "Retro Health Monitor",
-    span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
+    id: "pslv",
+    title: "PSLV Telemetry Analysis",
+    icon: <Network size={32} className="text-orange-400" />,
+    hook: "AI for Rocket Science: Ensuring the safety of rocket launches by analyzing the strength of communication signals and predicting potential disruptions from the rocket's exhaust flames.",
+    stats: "PSLV Telemetry Signal Integrity and Predictive Analysis. Developed AI-driven predictive models to analyse PSLV telemetry data, improving anomaly detection and enhancing flight safety protocols. Applied advanced radar signal processing and SNR-based comparisons.",
+    color: "from-orange-900/50 to-space-900",
+    uiCue: "Radar Signal Processing",
+    span: "col-span-1 md:col-span-1 lg:col-span-2 row-span-1",
   },
+  {
+    id: "sentiment",
+    title: "Sentiment Analysis Model",
+    icon: <Database size={32} className="text-teal-400" />,
+    hook: "Understanding Human Emotions in Text: A classic natural language processing project that classifies movie reviews as positive or negative using TF-IDF vectorization and Logistic Regression.",
+    stats: "Sentiment Analysis Model. Developed a sentiment analysis model classifying IMDB movie reviews as positive or negative. Preprocessed text data and employed a TF-IDF vectorizer to train a logistic regression model. Extended to a web interface using Flask.",
+    color: "from-teal-900/50 to-space-900",
+    uiCue: "Text Classification",
+    span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
+  }
 ];
 
 export default function BentoGrid() {

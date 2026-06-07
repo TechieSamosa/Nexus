@@ -19,46 +19,82 @@ interface Quest {
 const quests: Quest[] = [
   {
     id: 1,
-    title: "AI Training Specialist & Python Expert",
-    company: "Deccan AI Experts (Freelance)",
+    title: "Frontier AI Alignment & Multi-Agent Auditing",
+    company: "Deccan AI Experts",
     date: "Jan 2025 - Present",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="/deccan-ai-logo.png" alt="Deccan AI" className="w-full h-full object-contain rounded-full" /></div>,
-    summary: "Frontier LLM Pipeline Evaluation & Multi-Agent Auditing",
+    summary: "Frontier AI Alignment & Multi-Agent Auditing",
     achievements: [
-      "Evaluated production-grade LLM pipelines and multi-agent workflows across frontier AI projects in an Agile / sprint-based environment.",
-      "MAITRIX (SQL & Agentic AI): Scripted Python audits against live SQLite databases; resolved schema bugs and structural anomalies across 18-tool setups to optimize agentic tool-correctness.",
-      "Designed RLHF evaluation frameworks and executed EDA and data-quality checks using Pandas and NumPy to optimize fine-tuning data integrity."
+      "SQL Testing on Project Maitrix.",
+      "Evaluated LLMs using RLHF (verbosity, factual accuracy).",
+      "Boosted Gemini instruction-following by 15%."
     ],
     color: "from-neon-cyan to-blue-600",
   },
   {
     id: 2,
-    title: "AI/ML Research Intern",
-    company: "ISRO (Satish Dhawan Space Centre)",
+    title: "AI and Math Specialist",
+    company: "Outlier",
+    date: "Jan 2025 - Present",
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Building className="text-black w-6 h-6" /></div>,
+    summary: "AI and Math Specialist",
+    achievements: [
+      "Training AI on Natural Language Processing and Mathematical reasoning."
+    ],
+    color: "from-green-500 to-emerald-700",
+  },
+  {
+    id: 3,
+    title: "AI Engineering Intern",
+    company: "Proton Engineering",
+    date: "Oct 2025 - Dec 2025",
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Briefcase className="text-black w-6 h-6" /></div>,
+    summary: "Automating Engineering Talent Acquisition",
+    achievements: [
+      "Built a Streamlit/SpaCy resume parsing web app.",
+      "Achieved >90% candidate categorization accuracy, cutting HR screening time by 80%."
+    ],
+    color: "from-yellow-400 to-orange-500",
+  },
+  {
+    id: 4,
+    title: "Data Science and AI/ML Engineering Intern",
+    company: "ISRO",
     date: "Oct 2024 - Nov 2024",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain" /></div>,
-    summary: "Telemetry Forecasting & Radar Signal-Strength Prediction",
+    summary: "AI for Launch Vehicle Telemetry",
     achievements: [
-      "Integrated multi-source telemetry streams (RCS, yaw, pitch, roll); built an AI radar signal-strength prediction system for PSLV/SSLV; applied feature engineering on telemetry parameters for real-time atmospheric-interference detection.",
-      "Developed and deployed LSTM-based RNN time-series forecasting models (PyTorch/TensorFlow); automated statistical signal-degradation quantification.",
-      "Authored 4 technical reports with Matplotlib/Seaborn visualisations for cross-functional stakeholders."
+      "Analyzed PSLV transponder signals.",
+      "Developed predictive models quantifying the impact of yaw, pitch, and roll on signal integrity under Mr. Ram Senthil C.."
     ],
     color: "from-orange-500 to-red-600",
   },
   {
-    id: 3,
+    id: 5,
+    title: "Technical Team Lead",
+    company: "Data Science Club, VIT Bhopal",
+    date: "May 2023 - May 2024",
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Target className="text-black w-6 h-6" /></div>,
+    summary: "Technical Team Lead",
+    achievements: [
+      "Mentored peers, led machine learning workshops, and drove open-source projects."
+    ],
+    color: "from-blue-400 to-indigo-600",
+  },
+  {
+    id: 6,
     title: "Intel AI 4 Youth Trainee",
     company: "Intel Corporation",
     date: "Mar 2021 - Oct 2021",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="/intel-logo.png" alt="Intel" className="w-full h-full object-contain" /></div>,
-    summary: "Transformer-based NLP Healthcare Chatbot Prototyping",
+    summary: "Healthcare AI for Social Impact",
     achievements: [
-      "Prototyped Doctor Bot, a transformer-based NLP healthcare chatbot (pre-ChatGPT era).",
-      "Endorsed by NITI Aayog for public deployment in Uttar Pradesh.",
-      "National Finalist – Top 125 / 52,000 participants (MeitY, NeGD, Intel)."
+      "Prototyped NLP 'Doctor Bot'.",
+      "Top 125 finalist of 52,000.",
+      "Endorsed by NITI Aayog."
     ],
     color: "from-neon-purple to-purple-800",
-  },
+  }
 ];
 
 export default function QuestLog() {
