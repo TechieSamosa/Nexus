@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 import { useState } from "react";
 import { Shield, Map, Target, Briefcase, Rocket, X, Building } from "lucide-react";
 
@@ -105,11 +106,12 @@ export default function QuestLog() {
               </div>
 
               {/* Quest Card */}
-              <motion.div 
-                onClick={() => setSelectedQuest(quest)}
-                whileHover={{ y: -20, boxShadow: "0px 0px 25px rgba(255,255,255,0.3)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
-                className="flex-1 glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer"
-              >
+              <Tilt perspective={1000} tiltMaxAngleX={5} tiltMaxAngleY={5} className="flex-1 transform-style-3d">
+                <motion.div 
+                  onClick={() => setSelectedQuest(quest)}
+                  whileHover={{ y: -6, boxShadow: "0px 0px 25px rgba(255,255,255,0.3)", transition: { type: "spring", stiffness: 250, damping: 20 } }}
+                  className="w-full h-full glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer animate-wave will-change-transform group"
+                >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-50" />
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${quest.color}`} />
                 
@@ -131,7 +133,8 @@ export default function QuestLog() {
                   <p className="text-gray-300 text-lg">{quest.summary}</p>
                   <span className="text-neon-purple text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity bg-neon-purple/20 px-2 py-1 rounded">View Data</span>
                 </div>
-              </motion.div>
+                </motion.div>
+              </Tilt>
             </motion.div>
           ))}
         </div>

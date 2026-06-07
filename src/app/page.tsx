@@ -5,7 +5,6 @@ import QuestLog from "@/components/QuestLog";
 import BentoGrid from "@/components/BentoGrid";
 import Trophies from "@/components/Trophies";
 import Footer from "@/components/Footer";
-import FloatingPen from "@/components/FloatingPen";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <BentoGrid />
       <Trophies />
       <Footer />
-      <FloatingPen />
     </main>
   );
 }

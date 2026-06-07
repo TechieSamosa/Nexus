@@ -69,8 +69,15 @@ body {
   will-change: transform;
 }
 
-.group:hover .animate-wave {
+.group:hover .animate-wave,
+.animate-wave:hover,
+.tilt-wrapper:hover .animate-wave {
   animation: none;
   transform: translateY(0);
+}
+
+
+.transform-style-3d {
+  transform-style: preserve-3d;
 }
 

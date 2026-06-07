@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 import { GraduationCap, Trophy, Award, Medal } from "lucide-react";
 
 const education = [
@@ -87,19 +88,19 @@ export default function Trophies() {
             <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-space-600 to-transparent transform -translate-y-1/2 z-0"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
               {education.map((item, index) => (
+              <Tilt key={`edu-${index}`} perspective={1000} tiltMaxAngleX={10} tiltMaxAngleY={10} className="transform-style-3d">
                 <motion.div
-                  key={`edu-${index}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  whileHover={{ y: -20, transition: { type: "spring", stiffness: 400, damping: 10 } }}
-                  className="flex flex-col items-center group"
+                  whileHover={{ y: -6, transition: { type: "spring", stiffness: 250, damping: 20 } }}
+                  className="flex flex-col items-center group animate-wave will-change-transform"
                 >
                   <div className="mb-6 relative">
                     <div className="absolute inset-0 bg-white/5 blur-xl rounded-full group-hover:bg-white/10 transition-colors"></div>
                     <div 
-                      className={`animate-wave w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
+                      className={`w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
                     >
                       <div className={`absolute inset-0 bg-gradient-to-b ${item.color}`}></div>
                       <span className="relative z-10 drop-shadow-lg">{item.icon}</span>
@@ -111,6 +112,7 @@ export default function Trophies() {
                     <p className="text-base font-mono text-gray-400">{item.subtitle}</p>
                   </div>
                 </motion.div>
+              </Tilt>
               ))}
             </div>
           </div>
@@ -123,19 +125,19 @@ export default function Trophies() {
             <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-space-600 to-transparent transform -translate-y-1/2 z-0"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
               {achievements.map((item, index) => (
+              <Tilt key={`ach-${index}`} perspective={1000} tiltMaxAngleX={10} tiltMaxAngleY={10} className="transform-style-3d">
                 <motion.div
-                  key={`ach-${index}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  whileHover={{ y: -20, transition: { type: "spring", stiffness: 400, damping: 10 } }}
-                  className="flex flex-col items-center group"
+                  whileHover={{ y: -6, transition: { type: "spring", stiffness: 250, damping: 20 } }}
+                  className="flex flex-col items-center group animate-wave will-change-transform"
                 >
                   <div className="mb-6 relative">
                     <div className="absolute inset-0 bg-white/5 blur-xl rounded-full group-hover:bg-white/10 transition-colors"></div>
                     <div 
-                      className={`animate-wave w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
+                      className={`w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
                     >
                       <div className={`absolute inset-0 bg-gradient-to-b ${item.color}`}></div>
                       <span className="relative z-10 drop-shadow-lg">{item.icon}</span>
@@ -147,6 +149,7 @@ export default function Trophies() {
                     <p className="text-base font-mono text-gray-400">{item.subtitle}</p>
                   </div>
                 </motion.div>
+              </Tilt>
               ))}
             </div>
           </div>

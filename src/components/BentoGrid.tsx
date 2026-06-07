@@ -202,17 +202,18 @@ export default function BentoGrid() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
             >
               <Tilt
+                perspective={1000}
                 tiltMaxAngleX={5}
                 tiltMaxAngleY={5}
                 glareEnable={true}
                 glareMaxOpacity={0.15}
                 glarePosition="all"
-                className="w-full h-full"
+                className="w-full h-full transform-style-3d"
               >
                 <motion.div 
                   onClick={() => setSelectedProject(project)}
-                  whileHover={{ y: -20, boxShadow: "0px 0px 25px rgba(0,242,254,0.4)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
-                  className={`w-full h-full rounded-2xl border border-space-700 bg-gradient-to-br ${project.color} p-6 flex flex-col justify-between cursor-pointer group relative overflow-hidden glass-panel aura-halo`}
+                  whileHover={{ y: -6, boxShadow: "0px 0px 25px rgba(0,242,254,0.4)", transition: { type: "spring", stiffness: 250, damping: 20 } }}
+                  className={`w-full h-full rounded-2xl border border-space-700 bg-gradient-to-br ${project.color} p-6 flex flex-col justify-between cursor-pointer group relative overflow-hidden glass-panel aura-halo animate-wave will-change-transform`}
                 >
                   {/* Subtle grain texture over card */}
                   <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-30 pointer-events-none"></div>
