@@ -53,7 +53,7 @@ const certifications = [
   {
     title: "Supervised Machine Learning",
     subtitle: "Stanford University",
-    icon: <img src="/logos/stanford.png" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/Stanford.png" className="w-full h-full object-contain p-2" />,
     color: "from-red-400/20 to-transparent",
     border: "border-red-400",
   },
@@ -92,9 +92,9 @@ const extracurriculars = [
 
 const volunteering = [
   {
-    title: "AI Collaborator",
-    subtitle: "Omdena VIT Bhopal University Chapter",
-    icon: <HeartHandshake size={40} className="text-teal-400" />,
+    title: "General Open Source Contributions",
+    subtitle: "Omdena & Various Organizations",
+    icon: <img src="/logos/GitHub.png" className="w-full h-full object-contain p-2" />,
     color: "from-teal-400/20 to-transparent",
     border: "border-teal-400",
   },
@@ -108,7 +108,7 @@ const volunteering = [
   {
     title: "Technical Team Lead",
     subtitle: "Data Science Club, VIT Bhopal",
-    icon: <HeartHandshake size={40} className="text-cyan-400" />,
+    icon: <img src="/logos/images.jpg" className="w-full h-full object-contain p-2" />,
     color: "from-cyan-400/20 to-transparent",
     border: "border-cyan-400",
   },
