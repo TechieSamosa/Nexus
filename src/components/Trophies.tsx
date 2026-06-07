@@ -33,6 +33,20 @@ const achievements = [
     border: "border-yellow-400",
   },
   {
+    title: "Leadership & Volunteering",
+    subtitle: "NCC Cadet, Omdena AI Collaborator, Head Boy & Tech Lead (DSC VITB)",
+    icon: <Award size={40} className="text-emerald-400" />,
+    color: "from-emerald-400/20 to-transparent",
+    border: "border-emerald-400",
+  },
+  {
+    title: "ISRO Cyber Space Quiz",
+    subtitle: "All India Rank 230",
+    icon: <Medal size={40} className="text-blue-400" />,
+    color: "from-blue-400/20 to-transparent",
+    border: "border-blue-400",
+  },
+  {
     title: "Smart India Hackathon",
     subtitle: "Finalist 2024",
     icon: <Medal size={40} className="text-orange-400" />,

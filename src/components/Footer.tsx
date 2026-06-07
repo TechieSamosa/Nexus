@@ -63,6 +63,7 @@ export default function Footer() {
     } else {
       newOutput.push(`Command not found: ${cmd}. Type 'help' for available commands.`);
     }
+    setOutput(newOutput);
     setInput("");
   };
 
