@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Terminal, FileText, ExternalLink, Coffee } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Terminal, FileText, ExternalLink, Coffee, Download, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const titles = [
@@ -16,6 +16,16 @@ export default function Hero() {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+
+  const resumeLinks = [
+    { name: "General Resume (resume 92)", path: "/resumes/cv-general.pdf" },
+    { name: "CV", path: "/resumes/cv.pdf" },
+    { name: "Full CV", path: "/resumes/cv-full.pdf" },
+    { name: "CV for USA", path: "/resumes/cv-usa.pdf" },
+    { name: "CV Europass", path: "/resumes/cv-europass.pdf" },
+    { name: "CV for Germany", path: "/resumes/cv-germany.pdf" },
+  ];
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -85,17 +95,15 @@ export default function Hero() {
               <span>Launch Demos</span>
             </motion.a>
             
-            <motion.a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={() => setShowResumeModal(true)}
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139, 92, 246, 0.4)" }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center space-x-2 bg-neon-purple/10 border border-neon-purple text-neon-purple px-6 py-3 rounded-md font-mono transition-all"
             >
               <FileText size={18} />
               <span>Decrypt Resume</span>
-            </motion.a>
+            </motion.button>
 
             <motion.a
               href="https://github.com/TechieSamosa"
@@ -197,6 +205,60 @@ export default function Hero() {
           />
         </motion.div>
       </div>
+
+      {/* Resume Modal */}
+      <AnimatePresence>
+        {showResumeModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-space-900/80 backdrop-blur-sm"
+              onClick={() => setShowResumeModal(false)}
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md bg-space-800 border border-space-700 rounded-xl shadow-2xl shadow-neon-purple/20 overflow-hidden z-10"
+            >
+              <div className="p-6 border-b border-space-700 flex items-center justify-between bg-space-900/50">
+                <h3 className="text-xl font-bold text-white flex items-center">
+                  <FileText className="mr-3 text-neon-purple" />
+                  Select File Profile
+                </h3>
+                <button 
+                  onClick={() => setShowResumeModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="p-4 space-y-3 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                {resumeLinks.map((link, idx) => (
+                  <motion.a
+                    key={idx}
+                    href={link.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-between p-4 rounded-lg bg-space-900 border border-space-700 hover:border-neon-purple hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] transition-all group"
+                  >
+                    <span className="text-gray-300 font-mono text-sm group-hover:text-neon-purple transition-colors">
+                      {link.name}
+                    </span>
+                    <Download size={18} className="text-gray-500 group-hover:text-neon-cyan transition-colors" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
