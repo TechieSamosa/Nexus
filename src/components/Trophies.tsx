@@ -93,7 +93,7 @@ export default function Trophies() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  whileHover={{ y: -10 }}
+                  whileHover={{ y: -4 }}
                   className="flex flex-col items-center group"
                 >
                   <div className="mb-6 relative">
@@ -108,7 +108,7 @@ export default function Trophies() {
                     </motion.div>
                   </div>
                   
-                  <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-space-500 transition-colors shadow-lg">
+                  <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-neon-cyan/50 group-hover:shadow-[0_0_15px_rgba(0,242,254,0.2)] transition-all duration-300 shadow-lg">
                     <h3 className="font-bold text-white text-lg mb-2 h-14 flex items-center justify-center">{item.title}</h3>
                     <p className="text-base font-mono text-gray-400">{item.subtitle}</p>
                   </div>
@@ -131,7 +131,7 @@ export default function Trophies() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  whileHover={{ y: -10 }}
+                  whileHover={{ y: -4 }}
                   className="flex flex-col items-center group"
                 >
                   <div className="mb-6 relative">
@@ -146,7 +146,7 @@ export default function Trophies() {
                     </motion.div>
                   </div>
                   
-                  <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-space-500 transition-colors shadow-lg">
+                  <div className="bg-space-800/80 backdrop-blur-sm border border-space-700 p-4 rounded-xl w-full text-center group-hover:border-yellow-400/50 group-hover:shadow-[0_0_15px_rgba(250,204,21,0.2)] transition-all duration-300 shadow-lg">
                     <h3 className="font-bold text-white text-lg mb-2 h-14 flex items-center justify-center">{item.title}</h3>
                     <p className="text-base font-mono text-gray-400">{item.subtitle}</p>
                   </div>

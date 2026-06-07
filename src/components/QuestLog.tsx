@@ -107,7 +107,7 @@ export default function QuestLog() {
               {/* Quest Card */}
               <div 
                 onClick={() => setSelectedQuest(quest)}
-                className="flex-1 glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer hover:-translate-y-1 transition-transform"
+                className="flex-1 glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-50" />
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${quest.color}`} />
