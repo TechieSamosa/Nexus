@@ -32,14 +32,14 @@ const certifications = [
   {
     title: "IBM AI Engineering",
     subtitle: "IBM / Coursera",
-    icon: <img src="/logos/IBM.svg" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/ibm-vector-logo-download-free-11574219405kplub4crun-photoaidcom-cropped.png" className="w-full h-full object-contain p-2" />,
     color: "from-neon-purple/20 to-transparent",
     border: "border-neon-purple",
   },
   {
     title: "Deep Neural Networks with PyTorch",
     subtitle: "IBM / Coursera",
-    icon: <img src="/logos/IBM.svg" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/ibm-vector-logo-download-free-11574219405kplub4crun-photoaidcom-cropped.png" className="w-full h-full object-contain p-2" />,
     color: "from-pink-400/20 to-transparent",
     border: "border-pink-400",
   },
@@ -53,7 +53,7 @@ const certifications = [
   {
     title: "Supervised Machine Learning",
     subtitle: "Stanford University",
-    icon: <img src="/logos/Stanford.png" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/stanford.png" className="w-full h-full object-contain p-2" />,
     color: "from-red-400/20 to-transparent",
     border: "border-red-400",
   },
@@ -77,14 +77,14 @@ const extracurriculars = [
   {
     title: "DBHPS Rashtra Bhasha Praveena",
     subtitle: "Equivalent to B.A. in Hindi Literature",
-    icon: <img src="/logos/Dakshina_Bharat_Hindi_Prachar_Sabha_logo.png" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/DBHPS.png" className="w-full h-full object-contain p-2" />,
     color: "from-indigo-400/20 to-transparent",
     border: "border-indigo-400",
   },
   {
     title: "State Level Swimmer & Archery",
     subtitle: "School Games Federation Andhra Pradesh",
-    icon: <img src="/logos/School Games federation.jpg" className="w-full h-full object-contain p-2" />,
+    icon: <img src="/logos/Swimming-photoaidcom-cropped.jpg" className="w-full h-full object-contain p-2" />,
     color: "from-cyan-400/20 to-transparent",
     border: "border-cyan-400",
   },

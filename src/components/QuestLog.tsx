@@ -91,7 +91,7 @@ const quests: Quest[] = [
     title: "Intel AI 4 Youth Trainee",
     company: "Intel Corporation",
     date: "Mar 2021 - Oct 2021",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/intel-logo.png" alt="Intel" className="w-full h-full object-contain p-1" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Intel-Logo.png" alt="Intel" className="w-full h-full object-contain p-1" /></div>,
     summary: "Healthcare AI for Social Impact",
     achievements: [
       "Selected among the top 125 finalists out of 52,000 participants in a prestigious All India AI problem-solving competition backed by Intel, MeitY, NITI Aayog, and NeGD.",

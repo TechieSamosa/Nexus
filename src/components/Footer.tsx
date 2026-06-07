@@ -10,6 +10,22 @@ export default function Footer() {
   const [output, setOutput] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [msgName, setMsgName] = useState("");
+  const [msgEmail, setMsgEmail] = useState("");
+  const [msgBody, setMsgBody] = useState("");
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Message from ${msgName}`);
+    const body = encodeURIComponent(`${msgBody}\n\nFrom: ${msgEmail}`);
+    window.location.href = `mailto:adityasachinkhamitkar@gmail.com?subject=${subject}&body=${body}`;
+    setShowMessageModal(false);
+    setMsgName("");
+    setMsgEmail("");
+    setMsgBody("");
+  };
+
   useEffect(() => {
     if (showTerminal && inputRef.current) {
       inputRef.current.focus();
@@ -84,14 +100,24 @@ export default function Footer() {
               Open for learning & new opportunities.
             </p>
           </div>
-          <motion.a
-            href="mailto:adityasachinkhamitkar@gmail.com"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative z-10 bg-white text-space-900 px-6 py-3 rounded-lg font-bold shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all flex items-center whitespace-nowrap"
-          >
-            <Mail className="mr-2" size={18} /> Establish Uplink
-          </motion.a>
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 relative z-10">
+            <motion.button
+              onClick={() => setShowMessageModal(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-space-800 text-white border border-space-600 px-6 py-3 rounded-lg font-bold shadow-[0_0_15px_rgba(0,242,254,0.1)] hover:shadow-[0_0_25px_rgba(0,242,254,0.3)] hover:border-neon-cyan transition-all flex items-center whitespace-nowrap"
+            >
+              <TerminalIcon className="mr-2" size={18} /> Message Aditya
+            </motion.button>
+            <motion.a
+              href="mailto:adityasachinkhamitkar@gmail.com"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-space-900 px-6 py-3 rounded-lg font-bold shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all flex items-center whitespace-nowrap"
+            >
+              <Mail className="mr-2" size={18} /> Establish Uplink
+            </motion.a>
+          </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-space-700/50 pt-8 mt-8">
@@ -176,6 +202,87 @@ export default function Footer() {
               </form>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Message Modal */}
+      <AnimatePresence>
+        {showMessageModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-space-900/80 backdrop-blur-sm"
+              onClick={() => setShowMessageModal(false)}
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md bg-space-800 border border-neon-cyan/50 rounded-xl shadow-2xl shadow-neon-cyan/20 overflow-hidden z-10"
+            >
+              <div className="p-6 border-b border-space-700 flex items-center justify-between bg-space-900/50">
+                <h3 className="text-xl font-bold text-white flex items-center font-mono">
+                  <TerminalIcon className="mr-3 text-neon-cyan" />
+                  Direct Message
+                </h3>
+                <button 
+                  onClick={() => setShowMessageModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <form onSubmit={handleSendMessage} className="p-6 space-y-4">
+                <div>
+                  <label className="block text-xs font-mono text-gray-400 mb-1">NAME</label>
+                  <input
+                    required
+                    type="text"
+                    value={msgName}
+                    onChange={(e) => setMsgName(e.target.value)}
+                    className="w-full bg-space-900 border border-space-600 rounded-md p-3 text-white focus:outline-none focus:border-neon-cyan transition-colors"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono text-gray-400 mb-1">EMAIL</label>
+                  <input
+                    required
+                    type="email"
+                    value={msgEmail}
+                    onChange={(e) => setMsgEmail(e.target.value)}
+                    className="w-full bg-space-900 border border-space-600 rounded-md p-3 text-white focus:outline-none focus:border-neon-cyan transition-colors"
+                    placeholder="john@example.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono text-gray-400 mb-1">MESSAGE</label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={msgBody}
+                    onChange={(e) => setMsgBody(e.target.value)}
+                    className="w-full bg-space-900 border border-space-600 rounded-md p-3 text-white focus:outline-none focus:border-neon-cyan transition-colors resize-none"
+                    placeholder="Let's build something..."
+                  ></textarea>
+                </div>
+                
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full bg-neon-cyan/10 border border-neon-cyan text-neon-cyan font-bold py-3 rounded-md hover:bg-neon-cyan hover:text-space-900 transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Send size={18} />
+                  <span>Transmit Payload</span>
+                </motion.button>
+              </form>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </footer>
