@@ -118,7 +118,7 @@ const projects: Project[] = [
     title: "Project AETHER",
     icon: <Moon size={32} className="text-white" />,
     hook: "Revealing the Moon’s Darkest Secrets: We use AI to enhance images of the Moon's permanently shadowed regions—areas that haven't seen sunlight for billions of years—helping scientists find water ice and safe landing sites using Chandrayaan-2 data.",
-    stats: "Deep learning GAN pipeline fine-tuned on self-supervised MAEs. Enhances Chandrayaan-2 lunar PSRs by 40% SNR improvement (+86 dB). Handles multi-modal fusion of OHRC, DFSAR, CLASS, and IIRS data via GDAL/Rasterio.",
+    stats: "Project AETHER: Lunar PSR Imaging Pipeline. Deep learning GAN pipeline fine-tuned on self-supervised MAEs. Enhances Chandrayaan-2 lunar PSRs by 40% SNR improvement (+86 dB). Handles multi-modal fusion of OHRC, DFSAR, CLASS, and IIRS data via GDAL/Rasterio.",
     color: "from-gray-700 to-gray-900",
     uiCue: "Lunar PSR Imaging Pipeline",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1",
@@ -129,7 +129,7 @@ const projects: Project[] = [
     title: "Synapse.cpp",
     icon: <Cpu size={32} className="text-neon-cyan" />,
     hook: "Neural Networks, From Scratch: A deep dive into the brain of AI. I built a Multi-Layer Perceptron using only C++ and pure mathematics, proving that you don't need external libraries to understand how machines learn.",
-    stats: "MLP engine, zero external libs, C++17 RAII. Features: Adam/SGD, Xavier/He init, Backprop, Bias-corrected moments. Validated on XOR, Circle, Sine, Blobs.",
+    stats: "Synapse.cpp: MLP Engine from Scratch. Pure C++17 implementation (RAII, Adam/SGD, Xavier/He Init). Full forward/backward pass, dropout, and gradient clipping with zero external dependencies. Validated across 4 benchmarks (XOR, Circle, Sine, 3-class Blobs).",
     color: "from-blue-900 to-space-900",
     uiCue: "Terminal Compiling...",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
@@ -140,7 +140,7 @@ const projects: Project[] = [
     title: "BDH-Ablations",
     icon: <Dna size={32} className="text-neon-purple" />,
     hook: "Understanding AI’s \"Dragon Hatchling\": A research study that pulls apart a new, biologically-inspired AI model to see which components are essential for \"thinking\" and which can be optimized away.",
-    stats: "5-variant dual-circuit SSM ablation on WikiText-2. Multiplicative gating (+0.059 nats loss). 4x latent compression (-0.052 nats).",
+    stats: "BDH Ablations: Bio-Inspired Dual-Circuit Language Model. A controlled 5-variant ablation study of a dual-circuit State-Space Model on byte-level WikiText-2. Identified multiplicative gating as the critical component (+0.059 nats loss on removal). Secured -0.052 nats perplexity gain with 4x latent compression.",
     color: "from-purple-900 to-space-900",
     uiCue: "Neuron Firing Node",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
@@ -151,7 +151,7 @@ const projects: Project[] = [
     title: "Nexus Scout",
     icon: <Bot size={32} className="text-green-400" />,
     hook: "The Smart Recruiter: An AI-powered talent scout that autonomously processes hundreds of resumes to find the perfect technical and personality fit, saving recruiters hours of manual work.",
-    stats: "LangGraph orchestrator. Hybrid score: (0.6 * technical match) + (0.4 * satisfaction). Deterministic multi-agent talent evaluation bypassing API limits via batch-chunking.",
+    stats: "Nexus Scout: Multi-Agent Talent Acquisition Pipeline. Deterministic LangGraph pipeline with a weighted hybrid scoring engine (60% technical fit, 40% interest alignment). Utilizes batch-chunking inference to bypass API limits and Pydantic for strict JSON routing.",
     color: "from-green-900/50 to-space-900",
     uiCue: "Agent Graph Visualizer",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1",
@@ -162,7 +162,7 @@ const projects: Project[] = [
     title: "AgriSat AI",
     icon: <Satellite size={32} className="text-yellow-400" />,
     hook: "Space-Age Farming: A satellite-based health monitor for crops. By analyzing light patterns from space, we can predict crop health and forecast yields, helping farmers make data-driven decisions.",
-    stats: "Distributed Spark ETL. Ensemble soft-voting (RF, GBM, SVM) for >90% crop health accuracy. Processing multi-spectral GeoTIFFs on MinIO/S3.",
+    stats: "AgriSat AI: Distributed ETL & Predictive Analytics. Distributed Apache Spark/PySpark pipeline on AWS S3/MinIO. Achieved 92%+ crop-health classification accuracy with a soft-voting ensemble (Random Forest, GBM, SVM). Extracts NDVI/EVI spectral features.",
     color: "from-yellow-900/50 to-space-900",
     uiCue: "Multispectral Layer Switcher",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
@@ -173,7 +173,7 @@ const projects: Project[] = [
     title: "Dr DiagnoSense",
     icon: <Cross size={32} className="text-red-400" />,
     hook: "A Personal AI Health Assistant: A medical AI tool designed to provide accessible health insights by analyzing symptoms and offering potential causes, bringing early diagnostic support to your fingertips.",
-    stats: "Healthcare NLP healthcare assistant, recognized by Intel/NITI Aayog.",
+    stats: "Dr DiagnoSense: Intelligent Symptom & Condition Assistant. Transformer-based NLP healthcare assistant endorsed by NITI Aayog. ML-based detection of Alzheimer's, brain tumors, breast cancer, and heart attack risks using cognitive assessment and imaging data (Pickle-based models, Streamlit web interface).",
     color: "from-red-900/50 to-space-900",
     uiCue: "Retro Health Monitor",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
@@ -270,22 +270,31 @@ export default function BentoGrid() {
             </div>
             
             <div className="p-8">
-              <h2 className="text-3xl font-bold text-white mb-2">{selectedProject.title}</h2>
-              <div className="text-neon-cyan font-mono text-sm mb-6 flex items-center justify-between">
-                 <div className="flex items-center">
-                   <span className="w-2 h-2 rounded-full bg-neon-cyan mr-2"></span>
-                   {selectedProject.uiCue}
-                 </div>
-                 {selectedProject.link && (
-                   <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center font-bold text-black bg-neon-cyan hover:bg-white transition-colors px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_15px_rgba(0,242,254,0.3)]">
-                     <ExternalLink size={16} className="mr-2" /> Launch
-                   </a>
-                 )}
+              {/* Header (The Hook) */}
+              <div className="mb-6">
+                <h2 className="text-3xl font-bold text-white mb-4">{selectedProject.title}</h2>
+                <p className="text-lg text-gray-200 leading-relaxed italic border-l-4 border-neon-cyan pl-4 bg-space-900/50 py-3 rounded-r-lg">{selectedProject.hook}</p>
               </div>
-              
+
+              {/* Divider */}
+              <hr className="border-neon-cyan/30 my-6" />
+
+              {/* Body (Technical Deep Dive) */}
               <div className="space-y-6 text-gray-300">
-                <p className="text-lg leading-relaxed">{selectedProject.stats}</p>
+                <div className="text-md leading-relaxed font-mono whitespace-pre-wrap bg-space-900/40 p-5 rounded-lg border border-space-700">{selectedProject.stats}</div>
                 
+                {/* Actionables */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="inline-flex items-center text-neon-cyan font-mono text-sm px-4 py-2 rounded-lg border border-neon-cyan/30 bg-neon-cyan/10">
+                    <span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span>
+                    {selectedProject.uiCue}
+                  </div>
+                  {selectedProject.link && (
+                    <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center font-bold text-black bg-neon-cyan hover:bg-white transition-colors px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_15px_rgba(0,242,254,0.3)]">
+                      <ExternalLink size={16} className="mr-2" /> Launch
+                    </a>
+                  )}
+                </div>
                 {selectedProject.id === "bdh" && (
                   <div className="space-y-6 mt-6">
                     <div className="p-4 bg-space-900 rounded-lg border border-space-700">
@@ -322,15 +331,7 @@ export default function BentoGrid() {
                   </div>
                 )}
 
-                {selectedProject.id === "aether" && (
-                  <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
-                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span> Zero-Reference Enhancement</h4>
-                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 flex justify-center">
-                      <img src="https://raw.githubusercontent.com/TechieSamosa/AETHER/main/docs/images/before_after_sample.png" alt="AETHER Enhancement Results" className="w-full rounded-lg" />
-                    </div>
-                    <div className="mt-4 text-xs font-mono text-gray-400 text-center">Left: Raw OHRC telemetry of a PSR. Right: AETHER-enhanced output revealing hidden craters.</div>
-                  </div>
-                )}
+
 
                 {selectedProject.id === "agrisat" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
