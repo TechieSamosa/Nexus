@@ -91,6 +91,7 @@ interface Project {
   id: string;
   title: string;
   icon: React.ReactNode;
+  hook: string;
   stats: string;
   color: string;
   uiCue: string;
@@ -116,6 +117,7 @@ const projects: Project[] = [
     id: "aether",
     title: "Project AETHER",
     icon: <Moon size={32} className="text-white" />,
+    hook: "Revealing the Moon’s Darkest Secrets: We use AI to enhance images of the Moon's permanently shadowed regions—areas that haven't seen sunlight for billions of years—helping scientists find water ice and safe landing sites using Chandrayaan-2 data.",
     stats: "Deep learning GAN pipeline fine-tuned on self-supervised MAEs. Enhances Chandrayaan-2 lunar PSRs by 40% SNR improvement (+86 dB). Handles multi-modal fusion of OHRC, DFSAR, CLASS, and IIRS data via GDAL/Rasterio.",
     color: "from-gray-700 to-gray-900",
     uiCue: "Lunar PSR Imaging Pipeline",
@@ -126,6 +128,7 @@ const projects: Project[] = [
     id: "synapse",
     title: "Synapse.cpp",
     icon: <Cpu size={32} className="text-neon-cyan" />,
+    hook: "Neural Networks, From Scratch: A deep dive into the brain of AI. I built a Multi-Layer Perceptron using only C++ and pure mathematics, proving that you don't need external libraries to understand how machines learn.",
     stats: "MLP engine, zero external libs, C++17 RAII. Features: Adam/SGD, Xavier/He init, Backprop, Bias-corrected moments. Validated on XOR, Circle, Sine, Blobs.",
     color: "from-blue-900 to-space-900",
     uiCue: "Terminal Compiling...",
@@ -136,6 +139,7 @@ const projects: Project[] = [
     id: "bdh",
     title: "BDH-Ablations",
     icon: <Dna size={32} className="text-neon-purple" />,
+    hook: "Understanding AI’s \"Dragon Hatchling\": A research study that pulls apart a new, biologically-inspired AI model to see which components are essential for \"thinking\" and which can be optimized away.",
     stats: "5-variant dual-circuit SSM ablation on WikiText-2. Multiplicative gating (+0.059 nats loss). 4x latent compression (-0.052 nats).",
     color: "from-purple-900 to-space-900",
     uiCue: "Neuron Firing Node",
@@ -146,6 +150,7 @@ const projects: Project[] = [
     id: "nexus",
     title: "Nexus Scout",
     icon: <Bot size={32} className="text-green-400" />,
+    hook: "The Smart Recruiter: An AI-powered talent scout that autonomously processes hundreds of resumes to find the perfect technical and personality fit, saving recruiters hours of manual work.",
     stats: "LangGraph orchestrator. Hybrid score: (0.6 * technical match) + (0.4 * satisfaction). Deterministic multi-agent talent evaluation bypassing API limits via batch-chunking.",
     color: "from-green-900/50 to-space-900",
     uiCue: "Agent Graph Visualizer",
@@ -156,6 +161,7 @@ const projects: Project[] = [
     id: "agrisat",
     title: "AgriSat AI",
     icon: <Satellite size={32} className="text-yellow-400" />,
+    hook: "Space-Age Farming: A satellite-based health monitor for crops. By analyzing light patterns from space, we can predict crop health and forecast yields, helping farmers make data-driven decisions.",
     stats: "Distributed Spark ETL. Ensemble soft-voting (RF, GBM, SVM) for >90% crop health accuracy. Processing multi-spectral GeoTIFFs on MinIO/S3.",
     color: "from-yellow-900/50 to-space-900",
     uiCue: "Multispectral Layer Switcher",
@@ -166,6 +172,7 @@ const projects: Project[] = [
     id: "doctor",
     title: "Dr DiagnoSense",
     icon: <Cross size={32} className="text-red-400" />,
+    hook: "A Personal AI Health Assistant: A medical AI tool designed to provide accessible health insights by analyzing symptoms and offering potential causes, bringing early diagnostic support to your fingertips.",
     stats: "Healthcare NLP healthcare assistant, recognized by Intel/NITI Aayog.",
     color: "from-red-900/50 to-space-900",
     uiCue: "Retro Health Monitor",
@@ -226,7 +233,7 @@ export default function BentoGrid() {
                   
                   <div className="relative z-10 mt-6">
                     <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-base text-gray-300 line-clamp-3 mb-4">{project.stats}</p>
+                    <p className="text-base text-gray-300 line-clamp-3 mb-4">{project.hook}</p>
                     <div className="inline-flex flex-wrap gap-2 items-center text-xs font-mono text-neon-cyan bg-neon-cyan/10 px-2 py-1.5 rounded">
                       <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse"></span>
                       <span>{project.uiCue}</span>
@@ -270,8 +277,8 @@ export default function BentoGrid() {
                    {selectedProject.uiCue}
                  </div>
                  {selectedProject.link && (
-                   <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center text-neon-purple hover:text-white transition-colors bg-space-900 px-3 py-1 rounded border border-space-700">
-                     <ExternalLink size={14} className="mr-2" /> View Source
+                   <a href={selectedProject.link} target="_blank" rel="noreferrer" className="flex items-center font-bold text-black bg-neon-cyan hover:bg-white transition-colors px-6 py-2 rounded-lg border border-neon-cyan/50 shadow-[0_0_15px_rgba(0,242,254,0.3)]">
+                     <ExternalLink size={16} className="mr-2" /> Launch
                    </a>
                  )}
               </div>
