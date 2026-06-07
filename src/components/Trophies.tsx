@@ -8,21 +8,21 @@ const academics = [
   {
     title: "Vellore Institute of Technology",
     subtitle: "Integrated M.Tech (ME) in computer science engineering specialised in Computational & Data Science (2022-2027)",
-    icon: <GraduationCap size={40} className="text-neon-cyan" />,
+    icon: <img src="/logos/VIT.png" className="w-full h-full object-contain p-2" />,
     color: "from-neon-cyan/20 to-transparent",
     border: "border-neon-cyan",
   },
   {
     title: "Space Central School, Sriharikota",
     subtitle: "Class 12 CBSE (94.4%) | Head Boy",
-    icon: <BookOpen size={40} className="text-indigo-400" />,
+    icon: <img src="/logos/Space Central School.jpg" className="w-full h-full object-contain p-2" />,
     color: "from-indigo-400/20 to-transparent",
     border: "border-indigo-400",
   },
   {
     title: "Space Central School, Sriharikota",
     subtitle: "Class 10 CBSE",
-    icon: <BookOpen size={40} className="text-blue-400" />,
+    icon: <img src="/logos/Space Central School.jpg" className="w-full h-full object-contain p-2" />,
     color: "from-blue-400/20 to-transparent",
     border: "border-blue-400",
   },
@@ -32,28 +32,28 @@ const certifications = [
   {
     title: "IBM AI Engineering",
     subtitle: "IBM / Coursera",
-    icon: <Award size={40} className="text-neon-purple" />,
+    icon: <img src="/logos/IBM.svg" className="w-full h-full object-contain p-2" />,
     color: "from-neon-purple/20 to-transparent",
     border: "border-neon-purple",
   },
   {
     title: "Deep Neural Networks with PyTorch",
     subtitle: "IBM / Coursera",
-    icon: <Award size={40} className="text-pink-400" />,
+    icon: <img src="/logos/IBM.svg" className="w-full h-full object-contain p-2" />,
     color: "from-pink-400/20 to-transparent",
     border: "border-pink-400",
   },
   {
     title: "AI/ML for Geodata Analysis",
     subtitle: "ISRO - Indian Space Research Organization",
-    icon: <Star size={40} className="text-orange-400" />,
+    icon: <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" className="w-full h-full object-contain p-2" />,
     color: "from-orange-400/20 to-transparent",
     border: "border-orange-400",
   },
   {
     title: "Supervised Machine Learning",
     subtitle: "Stanford University",
-    icon: <Trophy size={40} className="text-red-400" />,
+    icon: <img src="/logos/Stanford.png" className="w-full h-full object-contain p-2" />,
     color: "from-red-400/20 to-transparent",
     border: "border-red-400",
   },
@@ -63,28 +63,28 @@ const extracurriculars = [
   {
     title: "All-India Champions",
     subtitle: "National Aerolympics 2020 (Organized by HAL & AeSI)",
-    icon: <Trophy size={40} className="text-yellow-400" />,
+    icon: <img src="/logos/HAL.avif" className="w-full h-full object-contain p-2" />,
     color: "from-yellow-400/20 to-transparent",
     border: "border-yellow-400",
   },
   {
     title: "National Cadet Corps (NCC)",
     subtitle: "Cadet (AP/JD2016417009)",
-    icon: <Award size={40} className="text-green-500" />,
+    icon: <img src="/logos/NCC.jpg" className="w-full h-full object-contain p-2" />,
     color: "from-green-500/20 to-transparent",
     border: "border-green-500",
   },
   {
     title: "DBHPS Rashtra Bhasha Praveena",
     subtitle: "Equivalent to B.A. in Hindi Literature",
-    icon: <Star size={40} className="text-indigo-400" />,
+    icon: <img src="/logos/Dakshina_Bharat_Hindi_Prachar_Sabha_logo.png" className="w-full h-full object-contain p-2" />,
     color: "from-indigo-400/20 to-transparent",
     border: "border-indigo-400",
   },
   {
     title: "State Level Swimmer & Archery",
     subtitle: "School Games Federation Andhra Pradesh",
-    icon: <Award size={40} className="text-cyan-400" />,
+    icon: <img src="/logos/School Games federation.jpg" className="w-full h-full object-contain p-2" />,
     color: "from-cyan-400/20 to-transparent",
     border: "border-cyan-400",
   },
@@ -101,7 +101,7 @@ const volunteering = [
   {
     title: "Open Source Contributor",
     subtitle: "GirlScript Summer of Code",
-    icon: <HeartHandshake size={40} className="text-emerald-400" />,
+    icon: <img src="/logos/GSSoC.png" className="w-full h-full object-contain p-2" />,
     color: "from-emerald-400/20 to-transparent",
     border: "border-emerald-400",
   },
@@ -160,7 +160,7 @@ const GridSection = ({ title, items, indexOffset }: { title: string, items: any[
                 className={`w-24 h-24 rounded-full border-2 ${item.border} bg-space-900 flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-b ${item.color}`}></div>
-                <span className="relative z-10 drop-shadow-lg">{item.icon}</span>
+                <span className="relative z-10 drop-shadow-lg w-full h-full flex items-center justify-center">{item.icon}</span>
               </div>
             </div>
             

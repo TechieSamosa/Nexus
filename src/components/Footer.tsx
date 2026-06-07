@@ -81,7 +81,7 @@ export default function Footer() {
               Open for Placement (2026/2027)
             </h3>
             <p className="text-gray-300 font-mono text-sm max-w-2xl">
-              Currently seeking a 10-to-11-month industry internship till April 2027 (open to conversion). Available for full-time placements post-convocation (August–October 2027) in AI/ML, MLOps, or Systems Engineering.
+              Open for learning & new opportunities.
             </p>
           </div>
           <motion.a

@@ -22,7 +22,7 @@ const quests: Quest[] = [
     title: "Frontier AI Alignment & Multi-Agent Auditing",
     company: "Deccan AI Experts",
     date: "Jan 2025 - Present",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="/deccan-ai-logo.png" alt="Deccan AI" className="w-full h-full object-contain rounded-full" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/deccan-ai-logo.png" alt="Deccan AI" className="w-full h-full object-contain p-1" /></div>,
     summary: "Frontier AI Alignment & Multi-Agent Auditing",
     achievements: [
       "Accumulated 500+ hours across frontier LLM projects (MAITRIX, Shield, Bluebird, Action Extensions).",
@@ -37,7 +37,7 @@ const quests: Quest[] = [
     title: "Data Scientist & AI QA Specialist",
     company: "Mindrift",
     date: "2024 - Present",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Building className="text-black w-6 h-6" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Mindrift.jpg" alt="Mindrift" className="w-full h-full object-contain p-1" /></div>,
     summary: "Data Scientist & AI Quality Assurance",
     achievements: [
       "Working as a Data Scientist and AI Quality Assurance specialist. Creating and managing high-tier Human Intelligence Data (HID) to train frontier AI models. Acting as the critical human-in-the-loop for AI alignment, reasoning validation, and rigorous quality assurance."
@@ -49,7 +49,7 @@ const quests: Quest[] = [
     title: "AI and Math Specialist",
     company: "Outlier",
     date: "Jan 2025 - Present",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Building className="text-black w-6 h-6" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Outlier.png" alt="Outlier" className="w-full h-full object-contain p-1" /></div>,
     summary: "AI and Math Specialist",
     achievements: [
       "Operating as an AI and Math Specialist. Evaluated and trained advanced AI models on complex mathematical reasoning and problem-solving tasks, providing structured human feedback for iterative model improvement."
@@ -61,7 +61,7 @@ const quests: Quest[] = [
     title: "AI Engineering Intern",
     company: "Proton Engineering Consultancy & Services",
     date: "Oct 2025 - Dec 2025",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><Briefcase className="text-black w-6 h-6" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Proton Engieering.png" alt="Proton Engineering" className="w-full h-full object-contain p-1" /></div>,
     summary: "Automating Engineering Talent Acquisition",
     achievements: [
       "Architected and deployed an AI-driven resume parsing web application utilizing Python, Streamlit, and Plotly.",
@@ -76,7 +76,7 @@ const quests: Quest[] = [
     title: "Data Science and AI/ML Engineering Intern",
     company: "Satish Dhawan Space Centre, Sriharikota Range (SDSC-SHAR), Indian Space Research Organisation (ISRO)",
     date: "Oct 2024 - Nov 2024",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain p-1" /></div>,
     summary: "AI for Launch Vehicle Telemetry",
     achievements: [
       "Analyzed PSLV/SSLV transponder signals to automate signal-degradation quantification for launch safety protocols.",
@@ -91,7 +91,7 @@ const quests: Quest[] = [
     title: "Intel AI 4 Youth Trainee",
     company: "Intel Corporation",
     date: "Mar 2021 - Oct 2021",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1"><img src="/intel-logo.png" alt="Intel" className="w-full h-full object-contain" /></div>,
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/intel-logo.png" alt="Intel" className="w-full h-full object-contain p-1" /></div>,
     summary: "Healthcare AI for Social Impact",
     achievements: [
       "Selected among the top 125 finalists out of 52,000 participants in a prestigious All India AI problem-solving competition backed by Intel, MeitY, NITI Aayog, and NeGD.",
