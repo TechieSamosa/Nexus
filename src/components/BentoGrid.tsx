@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Tilt from "react-parallax-tilt";
-import { Moon, Cpu, Dna, Bot, Satellite, Cross, X, ExternalLink } from "lucide-react";
+import { Moon, Cpu, Dna, Bot, Satellite, Cross, X, ExternalLink, Database, Network, Target } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 interface Project {
@@ -145,7 +145,7 @@ export default function BentoGrid() {
                   
                   <div className="relative z-10 mt-6">
                     <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-sm text-gray-300 line-clamp-3 mb-4">{project.stats}</p>
+                    <p className="text-base text-gray-300 line-clamp-3 mb-4">{project.stats}</p>
                     <div className="inline-flex flex-wrap gap-2 items-center text-xs font-mono text-neon-cyan bg-neon-cyan/10 px-2 py-1.5 rounded">
                       <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse"></span>
                       <span>{project.uiCue}</span>
