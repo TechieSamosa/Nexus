@@ -340,6 +340,11 @@ export default function BentoGrid() {
                 )}
 
                 {!["bdh", "nexus", "aether", "agrisat", "synapse"].includes(selectedProject.id) && (
+                  <div className="p-4 bg-space-900 rounded-lg border border-space-700 mt-6">
+                    <h4 className="font-mono text-white mb-2">System Logs</h4>
+                    <p className="text-sm text-gray-400">Architecture diagrams and full module documentation are available in the repository source code.</p>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
