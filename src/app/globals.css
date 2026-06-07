@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme inline {
   --color-space-900: #0c0b11;
@@ -79,5 +80,36 @@ body {
 
 .transform-style-3d {
   transform-style: preserve-3d;
+}
+
+/* Premium Typography Overrides */
+.prose pre {
+  background-color: var(--color-space-700) !important;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 0.75rem;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.05);
+}
+.prose code {
+  color: var(--color-neon-cyan) !important;
+  background-color: transparent !important;
+}
+.prose h1, .prose h2, .prose h3 {
+  color: #ffffff !important;
+  margin-top: 3rem !important;
+}
+.prose blockquote {
+  border-left-color: var(--color-neon-cyan) !important;
+  background: rgba(18, 17, 29, 0.4);
+  backdrop-filter: blur(16px);
+  padding-right: 1rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.prose a {
+  color: var(--color-neon-cyan) !important;
+  text-decoration-color: rgba(0, 242, 254, 0.4) !important;
+}
+.prose a:hover {
+  text-decoration-color: var(--color-neon-cyan) !important;
 }
 
