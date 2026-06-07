@@ -37,6 +37,7 @@ export default function Footer() {
       newOutput.push("HOBBIES & INTERESTS:");
       newOutput.push("- Swimming (South Zone Swimmer) & Gymming");
       newOutput.push("- Archery (State Level Archer)");
+      newOutput.push("- DBHPS Rashtra Bhasha Praveena (BA in Hindi Literature)");
       newOutput.push("- Postcrossing & Philately");
       newOutput.push("- Horology & Numismatics (Collecting automatic watches and old global coins)");
       newOutput.push("- Pen Enthusiast (I like pens, specifically Pilot Metropolitan)");

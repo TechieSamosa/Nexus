@@ -12,13 +12,6 @@ const education = [
     border: "border-neon-cyan",
   },
   {
-    title: "Dakshin Bharat Hindi Prachar Sabha",
-    subtitle: "Praveena Uttarardh (BA in Hindi Literature)",
-    icon: <Award size={40} className="text-pink-400" />,
-    color: "from-pink-400/20 to-transparent",
-    border: "border-pink-400",
-  },
-  {
     title: "Space Central School (Class 12 CBSE)",
     subtitle: "Grade: 94.4% | Head Boy & Vice Captain",
     icon: <GraduationCap size={40} className="text-indigo-400" />,
