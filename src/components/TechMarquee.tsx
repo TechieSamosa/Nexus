@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Database, Code2, Cpu, Brain, Network, Terminal, Sparkles, Server } from "lucide-react";
+import { Database, Code2, Cpu, Brain, Network, Terminal, Sparkles, Server, Users, Mic, ClipboardList, RefreshCcw, Handshake } from "lucide-react";
 
 const techStack = [
   { name: "DSA", icon: <Code2 size={20} /> },
@@ -28,6 +28,11 @@ const techStack = [
   { name: "AWS (S3/EC2)", icon: <Server size={20} /> },
   { name: "Docker", icon: <Code2 size={20} /> },
   { name: "SQLite", icon: <Database size={20} /> },
+  { name: "Leadership", icon: <Users size={20} /> },
+  { name: "Public Speaking", icon: <Mic size={20} /> },
+  { name: "Project Management", icon: <ClipboardList size={20} /> },
+  { name: "Agile Methodologies", icon: <RefreshCcw size={20} /> },
+  { name: "Cross-functional Collaboration", icon: <Handshake size={20} /> },
 ];
 
 export default function TechMarquee() {
