@@ -39,6 +39,7 @@ export default function Footer() {
       newOutput.push("- Archery (State Level Archer)");
       newOutput.push("- Postcrossing & Philately");
       newOutput.push("- Horology & Numismatics (Collecting automatic watches and old global coins)");
+      newOutput.push("- Pen Enthusiast (I like pens, specifically Pilot Metropolitan)");
       newOutput.push("- Gaming (RDR 2 & others)");
       newOutput.push("- Actively learning Golf and Tennis");
     } else if (cmd === "heavy-lift") {
@@ -49,6 +50,12 @@ export default function Footer() {
       newOutput.push("SYSTEM LOG: Current Bean - Ethiopian Yirgacheffe, Light Roast. Ratio 1:15.");
     } else if (cmd === "moka_pot_notes") {
       newOutput.push("SYSTEM LOG: Favorite Estate - Blue Tokai Attikan Estate. Dark Roast, 18g dose, 40g yield. Notes: Dark chocolate, figs, roasted nuts.");
+    } else if (cmd === "sudo" || cmd === "sudo su") {
+      newOutput.push("nice try. this incident will be reported.");
+    } else if (cmd === "rm -rf /") {
+      newOutput.push("Permission denied. Nice try though :)");
+    } else if (cmd === "matrix") {
+      newOutput.push("Wake up, Neo... The Matrix has you.");
     } else if (cmd === "clear") {
       setOutput([]);
       setInput("");
@@ -143,17 +150,27 @@ export default function Footer() {
                 </div>
               ))}
               
-              <form onSubmit={handleCommand} className="mt-2 flex items-center text-white">
+              <form 
+                onSubmit={handleCommand} 
+                className="mt-2 flex items-center text-white"
+              >
                 <span className="text-neon-purple mr-2">$</span>
                 <input
                   ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleCommand(e);
+                    }
+                  }}
                   className="bg-transparent border-none outline-none flex-1 text-white shadow-none focus:ring-0"
                   autoComplete="off"
                   spellCheck="false"
                 />
+                <button type="submit" className="hidden" aria-hidden="true">Submit</button>
               </form>
             </div>
           </motion.div>

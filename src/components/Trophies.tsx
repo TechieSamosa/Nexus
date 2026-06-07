@@ -5,11 +5,18 @@ import { GraduationCap, Trophy, Award, Medal } from "lucide-react";
 
 const achievements = [
   {
-    title: "Integrated M.Tech in Computer Science",
-    subtitle: "Computational & Data Science | VIT, Class of 2027",
+    title: "Integrated Master of Technology (M.Tech / M.E.) in CSE",
+    subtitle: "Specializing in Computational & Data Sciences | VIT, 2027",
     icon: <GraduationCap size={40} className="text-neon-cyan" />,
     color: "from-neon-cyan/20 to-transparent",
     border: "border-neon-cyan",
+  },
+  {
+    title: "Dakshin Bharat Hindi Prachar Sabha",
+    subtitle: "Praveena Uttarardh (BA in Hindi Literature)",
+    icon: <Award size={40} className="text-pink-400" />,
+    color: "from-pink-400/20 to-transparent",
+    border: "border-pink-400",
   },
   {
     title: "Intel AI4Youth National Finalist",
@@ -37,8 +44,8 @@ const achievements = [
 export default function Trophies() {
   return (
     <section className="py-24 relative px-6 z-10 bg-space-800/20 border-t border-space-700">
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-white tracking-tight mb-16">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-16">
           The Hall of <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Trophies</span>
         </h2>
 
