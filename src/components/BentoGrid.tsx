@@ -96,7 +96,7 @@ export default function BentoGrid() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="bento" className="py-24 px-6 relative z-10">
+    <section id="bento" className={`py-24 px-6 relative ${selectedProject ? 'z-50' : 'z-10'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <h2 className="text-4xl font-bold text-white tracking-tight mb-4">The Laboratory</h2>
@@ -280,12 +280,66 @@ export default function BentoGrid() {
                   </div>
                 )}
 
-                {!["bdh", "nexus", "aether"].includes(selectedProject.id) && (
-                  <div className="p-4 bg-space-900 rounded-lg border border-space-700 mt-6">
-                    <h4 className="font-mono text-white mb-2">System Logs</h4>
-                    <p className="text-sm text-gray-400">Architecture diagrams and full module documentation are available in the repository source code.</p>
+                {selectedProject.id === "agrisat" && (
+                  <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
+                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span> Distributed Spark ETL Architecture</h4>
+                    <div className="flex flex-col space-y-4 font-mono text-sm">
+                      <div className="flex justify-between items-center bg-space-800 p-4 border border-space-600 rounded-lg">
+                        <div className="flex items-center text-gray-300"><Database size={16} className="mr-2 text-gray-400" /> MinIO / S3</div>
+                        <span className="text-xs text-gray-500">Multi-spectral GeoTIFFs</span>
+                      </div>
+                      <div className="flex justify-center text-space-600">↓</div>
+                      <div className="bg-space-800 p-4 border border-neon-cyan/50 rounded-lg text-center">
+                        <div className="text-neon-cyan font-bold mb-2 flex justify-center items-center"><Network size={16} className="mr-2" /> Apache Spark Cluster</div>
+                        <div className="grid grid-cols-3 gap-2 text-xs">
+                          <div className="bg-space-900 border border-space-700 p-2 rounded">Worker 1 (ETL)</div>
+                          <div className="bg-space-900 border border-space-700 p-2 rounded">Worker 2 (ETL)</div>
+                          <div className="bg-space-900 border border-space-700 p-2 rounded">Worker 3 (ETL)</div>
+                        </div>
+                      </div>
+                      <div className="flex justify-center text-space-600">↓</div>
+                      <div className="bg-space-800 p-4 border border-neon-purple/50 rounded-lg text-center">
+                        <div className="text-neon-purple font-bold mb-2">Ensemble Soft-Voting</div>
+                        <div className="flex justify-center space-x-4 text-xs text-gray-400">
+                          <span>Random Forest</span>
+                          <span>|</span>
+                          <span>GBM</span>
+                          <span>|</span>
+                          <span>SVM</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
+
+                {selectedProject.id === "synapse" && (
+                  <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
+                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span> Synapse.cpp Execution Graph</h4>
+                    <div className="flex items-center justify-center space-x-2 md:space-x-4 font-mono text-xs md:text-sm">
+                      <div className="bg-space-800 border border-space-600 p-3 rounded-lg text-center w-24 md:w-32">
+                        <span className="block text-gray-300">Input</span>
+                        <span className="text-gray-500 text-xs">Features</span>
+                      </div>
+                      <div className="text-space-600">→</div>
+                      <div className="bg-space-800 border border-neon-cyan/50 p-3 rounded-lg text-center w-24 md:w-32 shadow-[0_0_10px_rgba(0,242,254,0.1)]">
+                        <span className="block text-neon-cyan">Hidden Layers</span>
+                        <span className="text-gray-500 text-xs">He Init + ReLU</span>
+                      </div>
+                      <div className="text-space-600">→</div>
+                      <div className="bg-space-800 border border-neon-purple/50 p-3 rounded-lg text-center w-24 md:w-32 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
+                        <span className="block text-neon-purple">Optimizer</span>
+                        <span className="text-gray-500 text-xs">Adam / SGD</span>
+                      </div>
+                    </div>
+                    <div className="mt-6 p-3 bg-black/50 rounded border border-space-700 font-mono text-xs text-green-400">
+                      $ make build<br/>
+                      $ ./synapse_train --dataset=xor --epochs=1000<br/>
+                      [Epoch 1000] Loss: 0.0014 | Accuracy: 100.0%
+                    </div>
+                  </div>
+                )}
+
+                {!["bdh", "nexus", "aether", "agrisat", "synapse"].includes(selectedProject.id) && (
               </div>
             </div>
           </motion.div>

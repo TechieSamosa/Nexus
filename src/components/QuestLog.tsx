@@ -64,7 +64,7 @@ export default function QuestLog() {
   const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null);
 
   return (
-    <section className="py-24 relative px-6 z-10">
+    <section className={`py-24 relative px-6 ${selectedQuest ? 'z-50' : 'z-10'}`}>
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center space-x-3 mb-16">
           <Target className="text-neon-cyan" size={36} />

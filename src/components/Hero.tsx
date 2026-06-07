@@ -52,7 +52,7 @@ export default function Hero() {
   }, [displayText, isDeleting, titleIndex]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-10 z-10 px-6">
+    <section className={`relative min-h-screen flex items-center pt-20 px-6 overflow-hidden ${showResumeModal ? 'z-50' : 'z-10'}`}>
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
         {/* Left Content */}
