@@ -1,19 +1,21 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal as TerminalIcon } from "lucide-react";
 import { useTerminal } from "./TerminalProvider";
-import GradientDescentGame from "./GradientDescentGame";
+import RetroTetrisGame from "./RetroTetrisGame";
+import { starkQuotes } from "../lib/starkQuotes";
 
 export default function GlobalTerminal() {
   const { isTerminalOpen, openTerminal, closeTerminal, initialCommand, starkMode, setStarkMode } = useTerminal();
   const [isMobile, setIsMobile] = useState(false);
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState<{ id: number; lines: string[]; isTyping: boolean }[]>([]);
+  const [output, setOutput] = useState<{ id: string; lines: string[]; isTyping: boolean }[]>([]);
   const [isGameActive, setIsGameActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
+  const lastQuoteIndexRef = useRef(-1);
 
   // Inactivity timeout
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,9 +34,8 @@ export default function GlobalTerminal() {
   }, [isTerminalOpen]);
 
   useEffect(() => {
-    // Scroll to bottom when output changes
     if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
+      terminalEndRef.current.scrollTop = terminalEndRef.current.scrollHeight;
     }
   }, [output]);
 
@@ -44,7 +45,7 @@ export default function GlobalTerminal() {
       timeoutRef.current = setTimeout(() => {
         if (isTerminalOpen && !isGameActive) {
           const prompts = [
-            "You still there? Try typing 'help'...",
+            "Type 'help' to see what I can do...",
             "My neural networks are waiting for an input.",
             "Idle state detected. Awaiting command.",
             "Silence is golden, but code is execution."
@@ -52,7 +53,7 @@ export default function GlobalTerminal() {
           const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
           addOutput([`SYSTEM: ${randomPrompt}`], true);
         }
-      }, 30000);
+      }, 20000);
     };
 
     window.addEventListener("keydown", resetTimer);
@@ -67,7 +68,7 @@ export default function GlobalTerminal() {
   }, [isTerminalOpen, isGameActive]);
 
   const addOutput = (lines: string[], typing = false) => {
-    setOutput(prev => [...prev, { id: Date.now(), lines, isTyping: typing }]);
+    setOutput(prev => [...prev, { id: crypto.randomUUID(), lines, isTyping: typing }]);
   };
 
   const handleCommand = (e: React.FormEvent) => {
@@ -93,10 +94,16 @@ export default function GlobalTerminal() {
       out.push("  jarvis          Initialize J.A.R.V.I.S.");
       out.push("  ironman         Stark quote");
       out.push("  stark-mode      [HIDDEN] Toggle Mark XLVII protocol");
-      out.push("  play            Launch Gradient Descent Lander");
+      out.push("  play            Launch Retro Tetris");
       out.push("  clear           Clear terminal");
     } else if (cmd === "ls") {
-      out.push("projects.json  experience.txt  readme.md  sys_logs/");
+      out.push("total 42");
+      out.push("drwxr-xr-x 2 ak root 4096 Jun  9 10:00 .");
+      out.push("drwxr-xr-x 4 ak root 4096 Jun  9 10:00 ..");
+      out.push("-rw-r--r-- 1 ak root 1024 Jun  9 10:00 [PROJECT:Aether]");
+      out.push("-rw-r--r-- 1 ak root  512 Jun  9 10:00 [PROJECT:Synapse.cpp]");
+      out.push("-rw-r--r-- 1 ak root  256 Jun  9 10:00 [PROJECT:BabyDragon]");
+      out.push("-rw-r--r-- 1 ak root 2048 Jun  9 10:00 resume.pdf");
     } else if (cmd === "tree") {
       out.push(".");
       out.push("├── projects.json");
@@ -130,12 +137,17 @@ export default function GlobalTerminal() {
     } else if (cmd === "jarvis") {
       out.push("Welcome back, Sir. All neural networks are currently online and functioning at optimal capacity.");
     } else if (cmd === "ironman") {
-      out.push("Sometimes you gotta run before you can walk. - Tony Stark");
+      let nextIdx = Math.floor(Math.random() * starkQuotes.length);
+      while (nextIdx === lastQuoteIndexRef.current) {
+        nextIdx = Math.floor(Math.random() * starkQuotes.length);
+      }
+      lastQuoteIndexRef.current = nextIdx;
+      out.push(`"${starkQuotes[nextIdx]}" - Tony Stark`);
     } else if (cmd === "stark-mode") {
       setStarkMode(!starkMode);
       out.push(`Mark XLVII Protocol ${!starkMode ? 'ENGAGED' : 'DISENGAGED'}. Visuals overwritten.`);
     } else if (cmd === "play") {
-      out.push("Initializing Gradient Descent Simulator...");
+      out.push("Initializing Retro Tetris...");
       setTimeout(() => setIsGameActive(true), 800);
     } else if (cmd === "clear") {
       setOutput([]);
@@ -145,7 +157,7 @@ export default function GlobalTerminal() {
       out.push(`Command not found: ${cmd}. Type 'help' for available commands.`);
     }
     
-    if (out.length > 0) addOutput(out, true);
+    if (out.length > 0) addOutput(out, starkMode);
     setInput("");
   };
 
@@ -191,24 +203,25 @@ export default function GlobalTerminal() {
             
             <div className="relative w-full h-[calc(100%-45px)]">
               {isGameActive ? (
-                <GradientDescentGame onExit={() => setIsGameActive(false)} />
+                <RetroTetrisGame onExit={() => setIsGameActive(false)} />
               ) : (
-                <div className={`p-4 h-full overflow-y-auto font-mono text-sm md:text-base flex flex-col custom-scrollbar ${starkMode ? 'text-[#FFD700]' : 'text-green-400'}`} onClick={() => inputRef.current?.focus()}>
-                  <div className="mb-2 text-gray-400">
-                    Nexus System Boot Sequence Complete.<br/>
-                    Type 'help' to see available commands.
-                  </div>
-                  
-                  {output.map((block) => (
-                    <TypewriterBlock key={block.id} lines={block.lines} isTyping={block.isTyping} starkMode={starkMode} />
-                  ))}
-                  
-                  <div ref={terminalEndRef} />
-
-                  <form 
-                    onSubmit={handleCommand} 
-                    className="mt-2 flex items-center text-white"
-                  >
+                  <div ref={terminalEndRef} className="p-4 h-full overflow-y-auto font-mono text-sm md:text-base flex flex-col custom-scrollbar pb-16" style={{ scrollBehavior: 'smooth' }} onClick={() => inputRef.current?.focus()}>
+                    <div className="mb-2 text-gray-400">
+                      Nexus System Boot Sequence Complete.<br/>
+                      Type 'help' to see available commands.
+                    </div>
+                    
+                    {output.map((block, index) => (
+                      <div key={block.id} className={starkMode ? 'text-[#FFD700]' : 'text-neon-cyan'}>
+                        <MemoizedTerminalLine lines={block.lines} isTyping={block.isTyping} index={index} />
+                      </div>
+                    ))}
+                    
+                    <div className="absolute bottom-4 left-4 right-4 bg-transparent">
+                      <form 
+                        onSubmit={handleCommand} 
+                        className="flex items-center text-white"
+                      >
                     <span className={`mr-2 ${starkMode ? 'text-white' : 'text-neon-purple'}`}>$</span>
                     <input
                       ref={inputRef}
@@ -220,9 +233,9 @@ export default function GlobalTerminal() {
                       spellCheck="false"
                     />
                     <button type="submit" className="hidden" aria-hidden="true">Submit</button>
-                  </form>
-                  <div className="mt-4 pb-4"></div>
-                </div>
+                      </form>
+                    </div>
+                  </div>
               )}
             </div>
           </motion.div>
@@ -232,42 +245,53 @@ export default function GlobalTerminal() {
   );
 }
 
-function TypewriterBlock({ lines, isTyping, starkMode }: { lines: string[], isTyping: boolean, starkMode: boolean }) {
+function TypewriterBlock({ lines, isTyping, index }: { lines: string[], isTyping: boolean, index: number }) {
   const [displayedText, setDisplayedText] = useState(isTyping ? "" : lines.join("\n"));
+  const hasAnimatedRef = useRef(false);
   
   useEffect(() => {
-    if (!isTyping) return;
+    if (!isTyping || hasAnimatedRef.current) {
+      setDisplayedText(lines.join("\n"));
+      return;
+    }
+    hasAnimatedRef.current = true;
     const fullText = lines.join("\n");
     let i = 0;
     const timer = setInterval(() => {
       setDisplayedText(fullText.substring(0, i + 1));
       i++;
       if (i >= fullText.length) clearInterval(timer);
-    }, 20); // 20ms per character
+    }, 20);
     return () => clearInterval(timer);
   }, [lines, isTyping]);
 
   const renderLine = (line: string, i: number) => {
-    if (line.includes("[PROJECT:Aether]")) {
-      const parts = line.split("[PROJECT:Aether]");
+    const projectRegex = /\[PROJECT:(.*?)\]/g;
+    if (projectRegex.test(line)) {
+      const parts = line.split(projectRegex);
       return (
-        <span key={i}>
-          {parts[0]}
-          <a href="#bento" className="underline font-bold text-white hover:text-neon-cyan cursor-pointer">Aether</a>
-          {parts[1]}
+        <span key={`cli-${index}-${i}-wrapper`}>
+          {parts.map((part, pIndex) => {
+             if (pIndex % 2 === 1) {
+                return <a key={`cli-${index}-${i}-${pIndex}-link`} href="#bento" className="underline font-bold text-white hover:text-neon-purple cursor-pointer">{part}</a>;
+             }
+             return <span key={`cli-${index}-${i}-${pIndex}-text`}>{part}</span>;
+          })}
         </span>
       );
     }
-    return <span key={i}>{line}</span>;
+    return <span key={`cli-${index}-${i}-line`}>{line}</span>;
   };
 
   return (
     <div className="mb-1 whitespace-pre-wrap">
-      <span className={lines[0]?.startsWith(">") ? "text-white" : (starkMode ? "text-[#FFD700]" : "text-neon-cyan")}>
+      <span className={lines[0]?.startsWith(">") ? "text-white" : ""}>
         {displayedText.split("\n").map((line, i) => (
-          <div key={i}>{renderLine(line, i)}</div>
+          <div key={`cli-${index}-${i}-row`}>{renderLine(line, i)}</div>
         ))}
       </span>
     </div>
   );
 }
+
+const MemoizedTerminalLine = React.memo(TypewriterBlock);
