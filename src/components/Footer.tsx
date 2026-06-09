@@ -1,25 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal as TerminalIcon, Send, MapPin, Mail } from "lucide-react";
-import GradientDescentGame from "./GradientDescentGame";
+import { Send, MapPin, Mail, Terminal as TerminalIcon } from "lucide-react";
 
 export default function Footer() {
-  const [showTerminal, setShowTerminal] = useState(false);
-  const [isGameActive, setIsGameActive] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState<string[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [msgName, setMsgName] = useState("");
   const [msgEmail, setMsgEmail] = useState("");
@@ -36,60 +21,7 @@ export default function Footer() {
     setMsgBody("");
   };
 
-  useEffect(() => {
-    if (showTerminal && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [showTerminal]);
 
-  const handleCommand = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    const cmd = input.trim().toLowerCase();
-    const newOutput = [...output, `> ${cmd}`];
-
-    if (cmd === "help") {
-      newOutput.push("AVAILABLE COMMANDS:");
-      newOutput.push("  whoami          Display identity and bio");
-      newOutput.push("  gym             Show physical metrics");
-      newOutput.push("  coffee          Show coffee brewing status");
-      newOutput.push("  jarvis          Initialize J.A.R.V.I.S.");
-      newOutput.push("  ironman         Stark quote");
-      newOutput.push("  play            Launch Gradient Descent Lander mini-game");
-      newOutput.push("  sudo            Elevate privileges");
-      newOutput.push("  clear           Clear terminal");
-    } else if (cmd === "whoami") {
-      newOutput.push("SYSTEM LOG: Identity Verified.");
-      newOutput.push("Aditya Khamitkar - AI & ML Engineer, Deep Learning Researcher.");
-      newOutput.push("Passionate about Frontier AI Alignment, Robotics, and elegant code.");
-    } else if (cmd === "gym") {
-      newOutput.push("Querying physical metrics... Deadlift PR: 200kg (440 lbs). Squat PR: 160kg. Status: Heavy weight, low reps.");
-    } else if (cmd === "coffee") {
-      newOutput.push("Brewing... Method: Moka Pot. Bean Status: Roasted. No sugar, no milk. Pure fuel.");
-    } else if (cmd === "jarvis") {
-      newOutput.push("Welcome back, Sir. All neural networks are currently online and functioning at optimal capacity. Ready to engineer some solutions.");
-    } else if (cmd === "ironman") {
-      newOutput.push("\"Sometimes you gotta run before you can walk.\" - Tony Stark");
-    } else if (cmd === "sudo" || cmd === "sudo su") {
-      newOutput.push("Nice try. This incident will be reported.");
-    } else if (cmd === "play") {
-      newOutput.push("Initializing Gradient Descent Simulator...");
-      setTimeout(() => setIsGameActive(true), 800);
-    } else if (cmd === "rm -rf /") {
-      newOutput.push("Permission denied. Nice try though :)");
-    } else if (cmd === "matrix") {
-      newOutput.push("Wake up, Neo... The Matrix has you.");
-    } else if (cmd === "clear") {
-      setOutput([]);
-      setInput("");
-      return;
-    } else {
-      newOutput.push(`Command not found: ${cmd}. Type 'help' for available commands.`);
-    }
-    setOutput(newOutput);
-    setInput("");
-  };
 
   return (
     <footer className="relative bg-space-900 border-t border-space-700 pt-16 pb-8 overflow-hidden z-20">
@@ -143,90 +75,6 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 right-6 z-50">
-        <motion.button
-          whileHover={{ rotate: 15, scale: 1.1 }}
-          onClick={() => setShowTerminal(!showTerminal)}
-          className="text-space-600 hover:text-neon-purple transition-colors p-4 bg-space-800/80 rounded-full border border-space-700 shadow-lg"
-          title="Inspect the Pilot Metropolitan"
-        >
-          <span className="font-mono font-bold text-xl leading-none">&gt;_</span>
-        </motion.button>
-      </div>
-
-      {/* Hidden Terminal Modal */}
-      <AnimatePresence>
-        {showTerminal && (
-          <motion.div
-            drag={!isMobile}
-            dragMomentum={false}
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className={`fixed z-50 overflow-hidden bg-space-900/95 backdrop-blur-md border border-neon-cyan/50 rounded-lg shadow-[0_0_40px_rgba(0,242,254,0.2)] 
-              ${isMobile ? "bottom-20 left-1/2 -translate-x-1/2 w-[90vw] h-[60vh]" : "bottom-24 right-10 w-[32rem] h-[28rem]"}`}
-          >
-            {/* Mac UI Header */}
-            <div className="bg-space-800/80 px-4 py-3 flex items-center justify-between border-b border-space-700 cursor-grab active:cursor-grabbing">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]" />
-                <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]" />
-              </div>
-              <div className="flex items-center text-xs font-mono text-gray-400 select-none">
-                <TerminalIcon size={12} className="mr-2 text-neon-cyan" />
-                stark_terminal_v10.exe
-              </div>
-              <button onClick={() => setShowTerminal(false)} className="text-gray-500 hover:text-white transition-colors">✕</button>
-            </div>
-            
-            <div className="relative w-full h-[calc(100%-45px)]">
-              {isGameActive ? (
-                <GradientDescentGame onExit={() => setIsGameActive(false)} />
-              ) : (
-                <div className="p-4 h-full overflow-y-auto font-mono text-sm md:text-base text-green-400 flex flex-col custom-scrollbar" onClick={() => inputRef.current?.focus()}>
-              <div className="mb-2 text-gray-400">
-                Nexus Terminal v2.0<br/>
-                Type 'help' to see available commands.
-              </div>
-              
-              {output.map((line, i) => (
-                <div key={i} className="mb-1 whitespace-pre-wrap">
-                  <span className={line.startsWith("$") ? "text-white" : "text-neon-cyan"}>
-                    {line}
-                  </span>
-                </div>
-              ))}
-              
-              <form 
-                onSubmit={handleCommand} 
-                className="mt-2 flex items-center text-white"
-              >
-                <span className="text-neon-purple mr-2">$</span>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleCommand(e);
-                    }
-                  }}
-                  className="bg-transparent border-none outline-none flex-1 text-white shadow-none focus:ring-0"
-                  autoComplete="off"
-                  spellCheck="false"
-                />
-                <button type="submit" className="hidden" aria-hidden="true">Submit</button>
-              </form>
-              <div className="mt-4 pb-4"></div>
-            </div>
-            )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Message Modal */}
       <AnimatePresence>

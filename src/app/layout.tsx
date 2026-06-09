@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
+import { TerminalProvider } from "@/components/TerminalProvider";
+import GlobalTerminal from "@/components/GlobalTerminal";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,8 +29,11 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${firaCode.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-space-900 text-white font-sans selection:bg-neon-purple/30 selection:text-white">
-        {children}
+      <body className="min-h-full flex flex-col bg-space-900 text-white font-sans selection:bg-neon-purple/30 selection:text-white transition-colors duration-500">
+        <TerminalProvider>
+          {children}
+          <GlobalTerminal />
+        </TerminalProvider>
       </body>
     </html>
   );
