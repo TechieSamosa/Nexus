@@ -204,7 +204,7 @@ export default function BentoGrid() {
           <p className="text-gray-400 font-mono">High-density asymmetric project grid.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[minmax(240px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(240px,auto)]">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
@@ -270,7 +270,7 @@ export default function BentoGrid() {
           <motion.div 
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className="bg-space-800 border border-space-600 rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl relative"
+            className="bg-space-800 border border-space-600 rounded-2xl w-full max-w-[95vw] md:max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button 

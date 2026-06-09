@@ -11,25 +11,44 @@ export const contentType = 'image/png';
 export default function Icon() {
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div
         style={{
-          fontSize: 18,
-          background: '#0c0b11',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#00f2fe',
-          borderRadius: '20%',
-          border: '1px solid #1a1a2e',
-          fontWeight: 'bold',
-          fontFamily: 'monospace',
-          boxShadow: '0 0 10px rgba(0, 242, 254, 0.5)',
+          background: '#0c0b11',
+          borderRadius: '50%',
+          position: 'relative',
         }}
       >
-        AK
+        {/* Outer Ring */}
+        <div
+          style={{
+            position: 'absolute',
+            width: '85%',
+            height: '85%',
+            borderRadius: '50%',
+            border: '2px solid rgba(0, 242, 254, 0.4)',
+            boxShadow: '0 0 8px rgba(0, 242, 254, 0.6), inset 0 0 8px rgba(0, 242, 254, 0.6)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {/* Inner Core */}
+          <div
+            style={{
+              width: '45%',
+              height: '45%',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, #ffffff 0%, #00f2fe 50%, rgba(0, 242, 254, 0.8) 100%)',
+              boxShadow: '0 0 12px #00f2fe, 0 0 20px #00f2fe',
+              display: 'flex',
+            }}
+          />
+        </div>
       </div>
     ),
     {

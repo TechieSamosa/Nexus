@@ -19,6 +19,12 @@ export default function Hero() {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isEasterEgg, setIsEasterEgg] = useState(false);
+
+  const handleEasterEgg = () => {
+    setIsEasterEgg(true);
+    setTimeout(() => setIsEasterEgg(false), 2000);
+  };
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -64,11 +70,18 @@ export default function Hero() {
           </div>
 
           <div className="space-y-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 
+              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight select-none cursor-pointer"
+              onDoubleClick={handleEasterEgg}
+            >
               <span className="block text-white">The</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple mt-2 min-h-[120px] md:min-h-[80px] leading-tight">
-                {displayText}
-                <span className="animate-pulse text-white">_</span>
+              <span className={`block mt-2 min-h-[120px] md:min-h-[80px] leading-tight transition-all duration-300 ${
+                isEasterEgg 
+                  ? "text-[#00f2fe] drop-shadow-[0_0_15px_#00f2fe]" 
+                  : "text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple"
+              }`}>
+                {isEasterEgg ? "Mark XLVII Online" : displayText}
+                {!isEasterEgg && <span className="animate-pulse text-white">_</span>}
               </span>
             </h1>
             

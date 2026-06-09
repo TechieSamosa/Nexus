@@ -143,7 +143,7 @@ const GridSection = ({ title, items, indexOffset }: { title: string, items: any[
     <h3 className="text-2xl font-mono text-neon-cyan mb-8 text-left border-b border-space-700 pb-2">{indexOffset}. {title}</h3>
     <div className="relative">
       <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-space-600 to-transparent transform -translate-y-1/2 z-0"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
         {items.map((item, index) => (
         <Tilt key={`${title}-${index}`} perspective={1000} tiltMaxAngleX={10} tiltMaxAngleY={10} className="transform-style-3d">
           <motion.div

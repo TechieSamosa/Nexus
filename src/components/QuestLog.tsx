@@ -190,7 +190,7 @@ export default function QuestLog() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-space-800 border border-space-600 rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl relative"
+              className="bg-space-800 border border-space-600 rounded-2xl w-full max-w-[95vw] md:max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl relative"
             >
               <button 
                 onClick={() => setSelectedQuest(null)}

@@ -2,13 +2,23 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PenTool, Terminal as TerminalIcon, Send, MapPin, Mail } from "lucide-react";
+import { Terminal as TerminalIcon, Send, MapPin, Mail } from "lucide-react";
+import GradientDescentGame from "./GradientDescentGame";
 
 export default function Footer() {
   const [showTerminal, setShowTerminal] = useState(false);
+  const [isGameActive, setIsGameActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [msgName, setMsgName] = useState("");
@@ -41,34 +51,31 @@ export default function Footer() {
 
     if (cmd === "help") {
       newOutput.push("AVAILABLE COMMANDS:");
-      newOutput.push("  whoami          Display identity and hobbies");
-      newOutput.push("  hobbies         Display personal interests");
-      newOutput.push("  heavy-lift      Show previous gym stats");
-      newOutput.push("  deadlift_pr     Show current deadlift PR");
-      newOutput.push("  moka-pot        Show previous coffee notes");
-      newOutput.push("  moka_pot_notes  Show coffee bean estate preferences");
+      newOutput.push("  whoami          Display identity and bio");
+      newOutput.push("  gym             Show physical metrics");
+      newOutput.push("  coffee          Show coffee brewing status");
+      newOutput.push("  jarvis          Initialize J.A.R.V.I.S.");
+      newOutput.push("  ironman         Stark quote");
+      newOutput.push("  play            Launch Gradient Descent Lander mini-game");
+      newOutput.push("  sudo            Elevate privileges");
       newOutput.push("  clear           Clear terminal");
-    } else if (cmd === "whoami" || cmd === "hobbies") {
+    } else if (cmd === "whoami") {
       newOutput.push("SYSTEM LOG: Identity Verified.");
-      newOutput.push("HOBBIES & INTERESTS:");
-      newOutput.push("- Swimming (South Zone Swimmer) & Gymming");
-      newOutput.push("- Archery (State Level Archer)");
-      newOutput.push("- DBHPS Rashtra Bhasha Praveena (BA in Hindi Literature)");
-      newOutput.push("- Postcrossing & Philately");
-      newOutput.push("- Horology & Numismatics (Collecting automatic watches and old global coins)");
-      newOutput.push("- Pen Enthusiast (I like pens, specifically Pilot Metropolitan)");
-      newOutput.push("- Gaming (RDR 2 & others)");
-      newOutput.push("- Actively learning Golf and Tennis");
-    } else if (cmd === "heavy-lift") {
-      newOutput.push("SYSTEM LOG: Last recorded 1RM - 180kg. Status: In Training.");
-    } else if (cmd === "deadlift_pr") {
-      newOutput.push("SYSTEM LOG: Current Deadlift PR - 200kg (440 lbs). Target: 220kg by Q4.");
-    } else if (cmd === "moka-pot") {
-      newOutput.push("SYSTEM LOG: Current Bean - Ethiopian Yirgacheffe, Light Roast. Ratio 1:15.");
-    } else if (cmd === "moka_pot_notes") {
-      newOutput.push("SYSTEM LOG: Favorite Estate - Blue Tokai Attikan Estate. Dark Roast, 18g dose, 40g yield. Notes: Dark chocolate, figs, roasted nuts.");
+      newOutput.push("Aditya Khamitkar - AI & ML Engineer, Deep Learning Researcher.");
+      newOutput.push("Passionate about Frontier AI Alignment, Robotics, and elegant code.");
+    } else if (cmd === "gym") {
+      newOutput.push("Querying physical metrics... Deadlift PR: 200kg (440 lbs). Squat PR: 160kg. Status: Heavy weight, low reps.");
+    } else if (cmd === "coffee") {
+      newOutput.push("Brewing... Method: Moka Pot. Bean Status: Roasted. No sugar, no milk. Pure fuel.");
+    } else if (cmd === "jarvis") {
+      newOutput.push("Welcome back, Sir. All neural networks are currently online and functioning at optimal capacity. Ready to engineer some solutions.");
+    } else if (cmd === "ironman") {
+      newOutput.push("\"Sometimes you gotta run before you can walk.\" - Tony Stark");
     } else if (cmd === "sudo" || cmd === "sudo su") {
-      newOutput.push("nice try. this incident will be reported.");
+      newOutput.push("Nice try. This incident will be reported.");
+    } else if (cmd === "play") {
+      newOutput.push("Initializing Gradient Descent Simulator...");
+      setTimeout(() => setIsGameActive(true), 800);
     } else if (cmd === "rm -rf /") {
       newOutput.push("Permission denied. Nice try though :)");
     } else if (cmd === "matrix") {
@@ -143,7 +150,7 @@ export default function Footer() {
           className="text-space-600 hover:text-neon-purple transition-colors p-4 bg-space-800/80 rounded-full border border-space-700 shadow-lg"
           title="Inspect the Pilot Metropolitan"
         >
-          <PenTool size={36} />
+          <span className="font-mono font-bold text-xl leading-none">&gt;_</span>
         </motion.button>
       </div>
 
@@ -151,20 +158,33 @@ export default function Footer() {
       <AnimatePresence>
         {showTerminal && (
           <motion.div
+            drag={!isMobile}
+            dragMomentum={false}
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-20 right-6 w-80 sm:w-96 bg-space-900 border border-neon-purple/50 rounded-lg shadow-[0_0_30px_rgba(139,92,246,0.2)] overflow-hidden z-50"
+            className={`fixed z-50 overflow-hidden bg-space-900/95 backdrop-blur-md border border-neon-cyan/50 rounded-lg shadow-[0_0_40px_rgba(0,242,254,0.2)] 
+              ${isMobile ? "bottom-20 left-1/2 -translate-x-1/2 w-[90vw] h-[60vh]" : "bottom-24 right-10 w-[32rem] h-[28rem]"}`}
           >
-            <div className="bg-space-800 px-3 py-2 flex items-center justify-between border-b border-space-700">
-              <div className="flex items-center text-xs font-mono text-gray-400">
-                <TerminalIcon size={12} className="mr-2 text-neon-purple" />
-                secret_shell.exe
+            {/* Mac UI Header */}
+            <div className="bg-space-800/80 px-4 py-3 flex items-center justify-between border-b border-space-700 cursor-grab active:cursor-grabbing">
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]" />
+                <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]" />
               </div>
-              <button onClick={() => setShowTerminal(false)} className="text-gray-500 hover:text-white">✕</button>
+              <div className="flex items-center text-xs font-mono text-gray-400 select-none">
+                <TerminalIcon size={12} className="mr-2 text-neon-cyan" />
+                stark_terminal_v10.exe
+              </div>
+              <button onClick={() => setShowTerminal(false)} className="text-gray-500 hover:text-white transition-colors">✕</button>
             </div>
             
-            <div className="p-4 h-80 overflow-y-auto font-mono text-sm md:text-base text-green-400 flex flex-col custom-scrollbar" onClick={() => inputRef.current?.focus()}>
+            <div className="relative w-full h-[calc(100%-45px)]">
+              {isGameActive ? (
+                <GradientDescentGame onExit={() => setIsGameActive(false)} />
+              ) : (
+                <div className="p-4 h-full overflow-y-auto font-mono text-sm md:text-base text-green-400 flex flex-col custom-scrollbar" onClick={() => inputRef.current?.focus()}>
               <div className="mb-2 text-gray-400">
                 Nexus Terminal v2.0<br/>
                 Type 'help' to see available commands.
@@ -200,6 +220,9 @@ export default function Footer() {
                 />
                 <button type="submit" className="hidden" aria-hidden="true">Submit</button>
               </form>
+              <div className="mt-4 pb-4"></div>
+            </div>
+            )}
             </div>
           </motion.div>
         )}
