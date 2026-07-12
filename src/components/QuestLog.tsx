@@ -14,15 +14,32 @@ interface Quest {
   summary: string;
   achievements: string[];
   color: string;
+  logoUrl: string;
+  isMajor?: boolean;
 }
 
 const quests: Quest[] = [
   {
     id: 1,
+    title: "Engineering Masters Intern",
+    company: "Bosch Global Software Technologies",
+    date: "Aug 2026 - May 2027",
+    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/bosch.png" alt="Bosch" className="w-full h-full object-contain p-1" /></div>,
+    logoUrl: "/logos/bosch.png",
+    summary: "Working on AI and Data for Enterprise Applications for Multi Market at Bosch.",
+    achievements: [
+      "Working on AI and Data for Enterprise Applications for Multi Market at Bosch."
+    ],
+    color: "from-red-500 to-red-800",
+    isMajor: true,
+  },
+  {
+    id: 2,
     title: "Frontier AI Alignment & Multi-Agent Auditing",
     company: "Deccan AI Experts",
-    date: "Jan 2025 - Present",
+    date: "Jan 2025 - Jul 2026",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Deccan AI.jpg" alt="Deccan AI" className="w-full h-full object-contain p-1" /></div>,
+    logoUrl: "/logos/Deccan AI.jpg",
     summary: "Frontier AI Alignment & Multi-Agent Auditing",
     achievements: [
       "Accumulated 500+ hours across frontier LLM projects (MAITRIX, Shield, Bluebird, Action Extensions).",
@@ -33,23 +50,12 @@ const quests: Quest[] = [
     color: "from-neon-cyan to-blue-600",
   },
   {
-    id: 2,
-    title: "Data Scientist & AI QA Specialist",
-    company: "Mindrift",
-    date: "2024 - Present",
-    icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Mindrift.jpg" alt="Mindrift" className="w-full h-full object-contain p-1" /></div>,
-    summary: "Data Scientist & AI Quality Assurance",
-    achievements: [
-      "Working as a Data Scientist and AI Quality Assurance specialist. Creating and managing high-tier Human Intelligence Data (HID) to train frontier AI models. Acting as the critical human-in-the-loop for AI alignment, reasoning validation, and rigorous quality assurance."
-    ],
-    color: "from-blue-400 to-indigo-600",
-  },
-  {
     id: 3,
     title: "AI and Math Specialist",
     company: "Outlier",
     date: "Jan 2025 - Present",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Outlier.png" alt="Outlier" className="w-full h-full object-contain p-1" /></div>,
+    logoUrl: "/logos/Outlier.png",
     summary: "AI and Math Specialist",
     achievements: [
       "Operating as an AI and Math Specialist. Evaluated and trained advanced AI models on complex mathematical reasoning and problem-solving tasks, providing structured human feedback for iterative model improvement."
@@ -62,6 +68,7 @@ const quests: Quest[] = [
     company: "Proton Engineering Consultancy & Services",
     date: "Oct 2025 - Dec 2025",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Proton Engieering.png" alt="Proton Engineering" className="w-full h-full object-contain p-1" /></div>,
+    logoUrl: "/logos/Proton Engieering.png",
     summary: "Automating Engineering Talent Acquisition",
     achievements: [
       "Architected and deployed an AI-driven resume parsing web application utilizing Python, Streamlit, and Plotly.",
@@ -77,6 +84,7 @@ const quests: Quest[] = [
     company: "Satish Dhawan Space Centre, Sriharikota Range (SDSC-SHAR), Indian Space Research Organisation (ISRO)",
     date: "Oct 2024 - Nov 2024",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg" alt="ISRO" className="w-full h-full object-contain p-1" /></div>,
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg",
     summary: "AI for Launch Vehicle Telemetry",
     achievements: [
       "Analyzed PSLV/SSLV transponder signals to automate signal-degradation quantification for launch safety protocols.",
@@ -85,6 +93,7 @@ const quests: Quest[] = [
       "Authored 4-5 comprehensive technical reports under the direct mentorship of Mr. Ram Senthil C., Deputy Manager of Mission Computers."
     ],
     color: "from-orange-500 to-red-600",
+    isMajor: true,
   },
   {
     id: 6,
@@ -92,6 +101,7 @@ const quests: Quest[] = [
     company: "Intel Corporation",
     date: "Mar 2021 - Oct 2021",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/Intel-Logo.png" alt="Intel" className="w-full h-full object-contain p-1" /></div>,
+    logoUrl: "/logos/Intel-Logo.png",
     summary: "Healthcare AI for Social Impact",
     achievements: [
       "Selected among the top 125 finalists out of 52,000 participants in a prestigious All India AI problem-solving competition backed by Intel, MeitY, NITI Aayog, and NeGD.",
@@ -100,6 +110,7 @@ const quests: Quest[] = [
       "'Doctor Bot' was officially endorsed by NITI Aayog for public deployment in Uttar Pradesh, recognizing its potential to drastically improve healthcare accessibility."
     ],
     color: "from-neon-purple to-purple-800",
+    isMajor: true,
   }
 ];
 
@@ -133,13 +144,13 @@ export default function QuestLog() {
               key={quest.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               className="relative flex flex-col md:flex-row gap-8 items-start group"
             >
               {/* Timeline Node */}
               <div className="hidden md:flex flex-col items-center z-10">
-                <div className={`w-14 h-14 rounded-full bg-space-900 border-2 border-space-700 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:border-neon-cyan transition-colors relative overflow-hidden`}>
+                <div className={`w-14 h-14 rounded-full bg-space-900 border-2 border-space-700 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:border-neon-cyan transition-colors relative overflow-hidden ${quest.isMajor ? 'shadow-[0_0_25px_rgba(255,255,255,0.4)] border-white/50' : ''}`}>
                   <div className={`absolute inset-0 bg-gradient-to-br ${quest.color} opacity-20 group-hover:opacity-40 transition-opacity`} />
                   <span className="relative z-10 text-gray-300 group-hover:text-white transition-colors">
                     {quest.icon}
@@ -151,8 +162,8 @@ export default function QuestLog() {
               <Tilt perspective={1000} tiltMaxAngleX={5} tiltMaxAngleY={5} className="flex-1 transform-style-3d">
                 <motion.div 
                   onClick={() => setSelectedQuest(quest)}
-                  whileHover={{ y: -6, boxShadow: "0px 0px 25px rgba(255,255,255,0.3)", transition: { type: "spring", stiffness: 250, damping: 20 } }}
-                  className="w-full h-full glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer animate-wave will-change-transform group"
+                  whileHover={{ y: -6, boxShadow: quest.isMajor ? "0px 0px 30px rgba(255,255,255,0.3)" : "0px 0px 25px rgba(255,255,255,0.2)", transition: { type: "spring", stiffness: 250, damping: 20 } }}
+                  className={`w-full h-full glass-panel aura-halo rounded-xl p-6 md:p-8 relative overflow-hidden cursor-pointer animate-wave will-change-transform group ${quest.isMajor ? 'border-t border-l border-white/20' : ''}`}
                 >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-50" />
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${quest.color}`} />
@@ -209,20 +220,25 @@ export default function QuestLog() {
                 </div>
               </div>
               
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-neon-cyan mb-6">{selectedQuest.title}</h3>
-                
-                <div className="space-y-4">
-                  {selectedQuest.achievements.map((achievement, i) => (
-                    <div key={i} className="flex items-start bg-space-900/50 p-4 rounded-lg border border-space-700">
-                      <span className="text-neon-purple mr-4 mt-1">
-                        <Shield size={18} />
-                      </span>
-                      <p className="text-gray-300 leading-relaxed text-base md:text-lg">
-                        {achievement}
-                      </p>
-                    </div>
-                  ))}
+              <div className="p-8 relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-[0.03] pointer-events-none flex items-center justify-center grayscale z-0 mix-blend-overlay">
+                  <img src={selectedQuest.logoUrl} alt="Watermark" className="w-full h-full object-contain" />
+                </div>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-neon-cyan mb-6">{selectedQuest.title}</h3>
+                  
+                  <div className="space-y-4">
+                    {selectedQuest.achievements.map((achievement, i) => (
+                      <div key={i} className="flex items-start bg-space-900/50 p-4 rounded-lg border border-space-700 backdrop-blur-sm">
+                        <span className="text-neon-purple mr-4 mt-1">
+                          <Shield size={18} />
+                        </span>
+                        <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+                          {achievement}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

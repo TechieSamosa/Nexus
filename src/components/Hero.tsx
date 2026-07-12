@@ -1,18 +1,15 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, FileText, ExternalLink, Coffee, Download, X } from "lucide-react";
+import { Terminal, FileText, ExternalLink, Coffee, Download, X, User } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const titles = [
-  "Aditya Khamitkar",
-  "Data Scientist",
-  "AI/ML Engineer",
-  "Generative AI",
-  "Data Engineer",
-  "ML Engineer",
-  "Full Stack AI Engineer",
-  "Researcher"
+  "AI Infrastructure Engineer",
+  "ML Systems Engineer",
+  "Distributed Systems Enthusiast",
+  "Building Synapse.cpp",
+  "Engineering Production AI"
 ];
 
 export default function Hero() {
@@ -20,6 +17,20 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [starkMode, setStarkMode] = useState(false);
+  
+  const [nameText, setNameText] = useState("");
+  const [isNameTyping, setIsNameTyping] = useState(true);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isNameTyping) return;
+    const fullName = "Aditya Khamitkar";
+    const timer = setTimeout(() => {
+      setNameText(fullName.slice(0, nameText.length + 1));
+      if (nameText === fullName) setIsNameTyping(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [nameText, isNameTyping]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -46,6 +57,7 @@ export default function Hero() {
   }, [displayText, isDeleting, titleIndex]);
 
   return (
+    <>
     <section className={`relative min-h-screen flex items-center pt-20 px-6 overflow-hidden z-10`}>
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
@@ -72,11 +84,12 @@ export default function Hero() {
               }}
               className={`text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight select-none cursor-pointer transition-all duration-300 ${starkMode ? 'text-cyan-400 drop-shadow-[0_0_15px_rgba(0,242,254,0.8)]' : 'text-white'}`}
             >
-              {starkMode ? 'Mark XLVII Online' : 'Aditya Khamitkar'}
+              {starkMode ? 'Mark XLVII Online' : (nameText + (isNameTyping ? "_" : ""))}
             </h1>
             
-            <p className="text-xl text-gray-400 max-w-lg font-mono">
-              &quot;Bridging the gap between low-level C++ systems and high-stakes agentic AI deployments.&quot;
+            <p className="text-xl text-gray-400 max-w-lg font-mono min-h-[30px]">
+              <span className="text-neon-cyan">&gt; </span>{displayText}
+              <span className="animate-pulse">_</span>
             </p>
           </div>
 
@@ -128,6 +141,16 @@ export default function Hero() {
               <FileText size={18} />
               <span>Decrypt Resume</span>
             </motion.a>
+
+            <motion.button
+              onClick={() => setIsAboutOpen(true)}
+              whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 0px 25px rgba(255,255,255,0.3)", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center space-x-2 bg-white/5 border border-white/20 text-white px-6 py-3 rounded-md font-mono transition-colors duration-100"
+            >
+              <User size={18} />
+              <span>whoami</span>
+            </motion.button>
           </div>
         </motion.div>
 
@@ -220,5 +243,45 @@ export default function Hero() {
 
 
     </section>
+
+    {/* About Modal */}
+    <AnimatePresence>
+      {isAboutOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="bg-space-900 border border-space-700 shadow-2xl rounded-xl w-full max-w-2xl relative overflow-hidden"
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-space-700 bg-space-800/50">
+              <div className="flex items-center space-x-2 text-neon-cyan font-mono text-sm">
+                <Terminal size={16} />
+                <span>~/identity/whoami.txt</span>
+              </div>
+              <button 
+                onClick={() => setIsAboutOpen(false)}
+                className="text-gray-500 hover:text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            
+            {/* Modal Body */}
+            <div className="p-8 space-y-6">
+              <p className="text-gray-300 text-lg leading-relaxed font-sans">
+                I enjoy understanding intelligent systems from the lowest abstraction layers upward. My interests lie at the intersection of software engineering, distributed systems, machine learning systems, and AI infrastructure.
+              </p>
+              <p className="text-gray-300 text-lg leading-relaxed font-sans">
+                I'm currently focused on strengthening my foundations in modern <span className="text-neon-cyan font-mono">C++</span>, <span className="text-neon-purple font-mono">distributed computing</span>, and production <span className="text-orange-400 font-mono">ML</span> while building systems that prioritize correctness, performance, and maintainability.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

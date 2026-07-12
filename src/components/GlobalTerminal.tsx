@@ -13,6 +13,8 @@ export default function GlobalTerminal() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<{ id: string; lines: string[]; isTyping: boolean }[]>([]);
   const [isGameActive, setIsGameActive] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const lastQuoteIndexRef = useRef(-1);
@@ -31,7 +33,22 @@ export default function GlobalTerminal() {
     if (isTerminalOpen && inputRef.current) {
       inputRef.current.focus();
     }
+    if (isTerminalOpen) {
+      setHasOpenedOnce(true);
+    }
   }, [isTerminalOpen]);
+
+  useEffect(() => {
+    if (hasOpenedOnce) {
+      setShowTooltip(false);
+      return;
+    }
+    const timer = setTimeout(() => {
+      setShowTooltip(true);
+      setTimeout(() => setShowTooltip(false), 5000);
+    }, 15000);
+    return () => clearTimeout(timer);
+  }, [hasOpenedOnce, showTooltip]);
 
   useEffect(() => {
     if (terminalEndRef.current) {
@@ -163,11 +180,25 @@ export default function GlobalTerminal() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-[9999]">
+      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-center">
+        <AnimatePresence>
+          {showTooltip && !isTerminalOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 5 }}
+              className="mb-3 px-3 py-1.5 bg-space-800 border border-space-700 text-neon-cyan text-xs font-mono rounded shadow-lg whitespace-nowrap"
+            >
+              Type "help"
+              <div className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-space-800 border-b border-r border-space-700 rotate-45"></div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
         <motion.button
           whileHover={{ rotate: 15, scale: 1.1 }}
           onClick={() => isTerminalOpen ? closeTerminal() : openTerminal()}
-          className={`transition-colors p-4 rounded-full border shadow-lg ${starkMode ? 'bg-[#1a1a1a] border-[#FFD700] text-[#FFD700]' : 'bg-space-800/80 border-space-700 text-neon-cyan hover:text-white'}`}
+          className={`transition-colors p-4 rounded-full border shadow-lg ${starkMode ? 'bg-[#1a1a1a] border-[#FFD700] text-[#FFD700]' : 'bg-space-800/80 border-space-700 text-neon-cyan hover:text-white'} ${showTooltip ? 'animate-pulse ring-2 ring-neon-cyan/50 ring-offset-2 ring-offset-space-900' : ''}`}
           title="Open Global Terminal"
         >
           <span className="font-mono font-bold text-xl leading-none">&gt;_</span>
