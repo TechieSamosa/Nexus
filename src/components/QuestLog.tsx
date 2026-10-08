@@ -26,9 +26,11 @@ const quests: Quest[] = [
     date: "Aug 2026 - May 2027",
     icon: <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden"><img src="/logos/bosch.png" alt="Bosch" className="w-full h-full object-contain p-1" /></div>,
     logoUrl: "/logos/bosch.png",
-    summary: "Working on AI and Data for Enterprise Applications for Multi Market at Bosch.",
+    summary: "Architecting Enterprise-level Multi-Agent AI Systems in Pune.",
     achievements: [
-      "Working on AI and Data for Enterprise Applications for Multi Market at Bosch."
+      "Making Enterprise level Multi-Agent Systems and Agentic AI systems for Multi Market at Bosch Global Software Technologies.",
+      "Working on the Team's Software Development Life Cycle (SDLC) to streamline workflows, making the development process more efficient by at least 20%.",
+      "Focusing on highly scalable, production-ready AI architectures."
     ],
     color: "from-red-500 to-red-800",
     isMajor: true,

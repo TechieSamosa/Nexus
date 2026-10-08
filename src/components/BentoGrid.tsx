@@ -113,6 +113,17 @@ const bdhBarData = [
   { name: "GELU Activation", impact: -0.039, fill: "#3b82f6" },
 ];
 
+const modelCollapseMermaid = `graph LR
+    A[Human Data] --> B(Gen 0 Model)
+    B -->|Generates| C[Synthetic Data]
+    C --> D(Gen 1 Model)
+    D -->|Generates| E[Synthetic Data]
+    E --> F(Gen N Model)
+    F -->|Model Collapse| G[Degraded Output]
+    
+    classDef node fill:#1e1b4b,stroke:#8b5cf6,stroke-width:2px,color:#fff;
+    class A,C,E,G node;`;
+
 const projects: Project[] = [
   {
     id: "aether",
@@ -126,26 +137,47 @@ const projects: Project[] = [
     githubUrl: "https://github.com/TechieSamosa/AETHER"
   },
   {
-    id: "synapse",
-    title: "Synapse.cpp",
+    id: "atlas",
+    title: "Atlas",
     icon: <Cpu size={32} className="text-neon-cyan" />,
-    hook: "Neural Networks, From Scratch: A deep dive into the brain of AI. I built a Multi-Layer Perceptron using only C++ and pure mathematics, proving that you don't need external libraries to understand how machines learn.",
-    stats: "Synapse.cpp: MLP Engine from Scratch. Pure C++17 implementation (RAII, Adam/SGD, Xavier/He Init). Full forward/backward pass, dropout, and gradient clipping with zero external dependencies. Validated across 4 benchmarks (XOR, Circle, Sine, 3-class Blobs).",
+    hook: "Building from the ground up. I am currently developing Atlas, a highly performant compute engine built from scratch in modern C++20 to deeply understand the low-level memory and math mechanics underlying AI systems.",
+    stats: "Atlas: C++20 Compute Engine (In Development). Implements distributed computing patterns, custom memory allocators, and hardware-optimized operations with zero external dependencies.",
     color: "from-blue-900 to-space-900",
-    uiCue: "Terminal Compiling...",
+    uiCue: "Compiling C++20...",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
-    githubUrl: "https://github.com/TechieSamosa/Synapse.cpp"
+    githubUrl: "https://github.com/TechieSamosa/Atlas"
+  },
+  {
+    id: "model_collapse",
+    title: "Survey: Model Collapse",
+    icon: <Target size={32} className="text-red-400" />,
+    hook: "What happens when AI trains on AI? Author of a comprehensive survey manuscript analyzing the catastrophic degradation of language models when recursively trained on synthetic data.",
+    stats: "Research Survey: Model Collapse in Recursive Training. Analyzed literature on synthetic data feedback loops, identifying early-stage variance loss and late-stage convergence to unimodal noise distributions.",
+    color: "from-red-900/50 to-space-900",
+    uiCue: "Evaluating Synthetic Data",
+    span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1"
   },
   {
     id: "bdh",
     title: "BDH-Ablations",
     icon: <Dna size={32} className="text-neon-purple" />,
-    hook: "Understanding AI’s \"Dragon Hatchling\": A research study that pulls apart a new, biologically-inspired AI model to see which components are essential for \"thinking\" and which can be optimized away.",
-    stats: "BDH Ablations: Bio-Inspired Dual-Circuit Language Model. A controlled 5-variant ablation study of a dual-circuit State-Space Model on byte-level WikiText-2. Identified multiplicative gating as the critical component (+0.059 nats loss on removal). Secured -0.052 nats perplexity gain with 4x latent compression.",
+    hook: "Understanding AI's Dragon Hatchling. Manuscript in preparation: A controlled ablation study of a biologically-inspired dual-circuit State-Space Model on byte-level WikiText-2.",
+    stats: "BDH Ablations: Identified multiplicative gating as the critical component (+0.059 nats loss on removal). Secured -0.052 nats perplexity gain with 4x latent compression.",
     color: "from-purple-900 to-space-900",
     uiCue: "Neuron Firing Node",
     span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
     githubUrl: "https://github.com/TechieSamosa/BDH-Ablations"
+  },
+  {
+    id: "synapse",
+    title: "Synapse.cpp",
+    icon: <Network size={32} className="text-neon-cyan" />,
+    hook: "Neural Networks, From Scratch: A deep dive into the brain of AI. I built a Multi-Layer Perceptron using only C++ and pure mathematics.",
+    stats: "Synapse.cpp: MLP Engine from Scratch. Pure C++17 implementation. Full forward/backward pass, dropout, and gradient clipping with zero external dependencies.",
+    color: "from-blue-900 to-space-900",
+    uiCue: "Terminal Compiling...",
+    span: "col-span-1 md:col-span-1 lg:col-span-1 row-span-1",
+    githubUrl: "https://github.com/TechieSamosa/Synapse.cpp"
   },
   {
     id: "nexus",
@@ -356,6 +388,31 @@ export default function BentoGrid() {
                     </div>
                   </div>
                 )}
+                
+                {selectedProject.id === "model_collapse" && (
+                  <div className="space-y-6 mt-6">
+                    <div className="p-4 bg-space-900 rounded-lg border border-space-700">
+                      <h4 className="font-mono text-white mb-4 flex items-center"><span className="w-2 h-2 rounded-full bg-red-400 mr-2"></span> Synthetic Data Cycle (Model Collapse)</h4>
+                      <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 mb-6">
+                        <MermaidDiagram chart={modelCollapseMermaid} />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {selectedProject.id === "synapse" && (
+                  <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
+                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span> Synapse.cpp MLP Architecture</h4>
+                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 flex justify-center">
+                      <img src="https://raw.githubusercontent.com/TechieSamosa/Synapse.cpp/main/assets/mlp_architecture.png" alt="MLP Architecture Diagram" className="max-w-full rounded-lg bg-white/5" />
+                    </div>
+                    <div className="mt-6 p-3 bg-black/50 rounded border border-space-700 font-mono text-xs text-green-400">
+                      $ make build<br/>
+                      $ ./synapse_train --dataset=xor --epochs=1000<br/>
+                      [Epoch 1000] Loss: 0.0014 | Accuracy: 100.0%
+                    </div>
+                  </div>
+                )}
 
                 {selectedProject.id === "nexus" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
@@ -377,21 +434,20 @@ export default function BentoGrid() {
                   </div>
                 )}
 
-                {selectedProject.id === "synapse" && (
+                {selectedProject.id === "atlas" && (
                   <div className="p-6 bg-space-900 rounded-lg border border-space-700 mt-6">
-                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span> Synapse.cpp MLP Architecture</h4>
-                    <div className="w-full bg-space-800 rounded-lg p-2 border border-space-600 flex justify-center">
-                      <img src="https://raw.githubusercontent.com/TechieSamosa/Synapse.cpp/main/assets/mlp_architecture.png" alt="MLP Architecture Diagram" className="max-w-full rounded-lg bg-white/5" />
-                    </div>
+                    <h4 className="font-mono text-white mb-6 flex items-center"><span className="w-2 h-2 rounded-full bg-neon-cyan mr-2 animate-pulse"></span> Atlas Engine (C++20)</h4>
+                    <p className="text-gray-300 font-mono text-sm mb-4">Atlas is a highly optimized compute engine built entirely from scratch to understand the math behind AI.</p>
                     <div className="mt-6 p-3 bg-black/50 rounded border border-space-700 font-mono text-xs text-green-400">
-                      $ make build<br/>
-                      $ ./synapse_train --dataset=xor --epochs=1000<br/>
-                      [Epoch 1000] Loss: 0.0014 | Accuracy: 100.0%
+                      $ cmake -S . -B build<br/>
+                      $ cmake --build build<br/>
+                      $ ./atlas_compute --benchmark<br/>
+                      [Atlas] Running distributed matrix multiplication...
                     </div>
                   </div>
                 )}
 
-                {!["bdh", "nexus", "aether", "agrisat", "synapse"].includes(selectedProject.id) && (
+                {!["bdh", "model_collapse", "nexus", "aether", "agrisat", "atlas", "synapse"].includes(selectedProject.id) && (
                   <div className="p-4 bg-space-900 rounded-lg border border-space-700 mt-6">
                     <h4 className="font-mono text-white mb-2">System Logs</h4>
                     <p className="text-sm text-gray-400">Architecture diagrams and full module documentation are available in the repository source code.</p>

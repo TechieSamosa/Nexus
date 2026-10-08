@@ -275,7 +275,7 @@ export default function Hero() {
                 I enjoy understanding intelligent systems from the lowest abstraction layers upward. My interests lie at the intersection of software engineering, distributed systems, machine learning systems, and AI infrastructure.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed font-sans">
-                I'm currently focused on strengthening my foundations in modern <span className="text-neon-cyan font-mono">C++</span>, <span className="text-neon-purple font-mono">distributed computing</span>, and production <span className="text-orange-400 font-mono">ML</span> while building systems that prioritize correctness, performance, and maintainability.
+                I&apos;m currently focused on strengthening my foundations in modern <span className="text-neon-cyan font-mono">C++</span>, <span className="text-neon-purple font-mono">distributed computing</span>, and production <span className="text-orange-400 font-mono">ML</span> while building systems that prioritize correctness, performance, and maintainability.
               </p>
             </div>
           </motion.div>
